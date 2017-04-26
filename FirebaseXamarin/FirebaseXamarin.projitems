@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{021A7A2F-2A40-4C71-BFDC-9D64BB1E6EC7}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>FirebaseXamarin</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)MyClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\DataBase\DBManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Interfaces\IDBManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Core\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\Models\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\DataBase\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\Interfaces\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\Firebase\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="firebaseiosdatabase" is-shell="true">
+  <name>Firebase Database for iOS</name>
+  <publisher>Xamarin Inc.</publisher>
+  <publisher-url>http://xamarin.com</publisher-url>
+  <docs-url>https://firebase.google.com/docs/database/</docs-url>
+  <src-url>https://github.com/xamarin/GoogleApisForiOSComponents/tree/master/Firebase.Database</src-url>
+  <version>3.1.1.2</version>
+  <summary>Store and sync data with the Firebase Realtime Database. Data is synced across all clients in realtime, and remains available when your app goes offline.</summary>
+  <packages>
+    <package id="Xamarin.Firebase.iOS.Database" version="3.1.1.2" framework="ios-unified" />
+  </packages>
+  <samples>
+    <sample id="DatabaseSample">
+      <name>Database Sample</name>
+      <summary>Database Sample</summary>
+    </sample>
+  </samples>
+</component>

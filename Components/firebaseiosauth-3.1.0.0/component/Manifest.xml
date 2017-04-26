@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="firebaseiosauth" is-shell="true">
+  <name>Firebase Auth for iOS</name>
+  <publisher>Xamarin Inc.</publisher>
+  <publisher-url>http://xamarin.com</publisher-url>
+  <docs-url>https://firebase.google.com/docs/auth/</docs-url>
+  <src-url>https://github.com/xamarin/GoogleApisForiOSComponents/tree/master/Firebase.Auth</src-url>
+  <version>3.1.0.0</version>
+  <summary>Firebase Auth allows you to manage your own account system without any backend code. It supports email and password accounts and 3rd party auth mechanisms.</summary>
+  <packages>
+    <package id="Xamarin.Firebase.iOS.Auth" version="3.1.0.0" framework="ios-unified" />
+  </packages>
+  <samples>
+    <sample id="AuthSample">
+      <name>Auth Sample</name>
+      <summary>Auth Sample</summary>
+    </sample>
+  </samples>
+</component>
