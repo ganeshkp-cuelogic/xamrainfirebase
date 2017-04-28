@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -105,29 +106,38 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ugd-BC-tUw" misplaced="YES">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ugd-BC-tUw" misplaced="YES">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="53" id="3VY-Tx-H5s">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="53"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="69" id="3VY-Tx-H5s">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3VY-Tx-H5s" id="au7-Km-L0R">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AT9-Bc-YEk" misplaced="YES">
-                                                    <rect key="frame" x="30" y="7" width="332" height="37"/>
+                                                    <rect key="frame" x="77" y="16" width="283" height="37"/>
                                                     <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="rhM-dd-8Pt" misplaced="YES">
+                                                    <rect key="frame" x="12" y="9" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="EZN-sD-qVb"/>
+                                                        <constraint firstAttribute="width" constant="50" id="wTd-vo-cvI"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="AT9-Bc-YEk" firstAttribute="top" secondItem="au7-Km-L0R" secondAttribute="top" constant="7" id="3TM-Wt-6Ze"/>
-                                                <constraint firstAttribute="bottom" secondItem="AT9-Bc-YEk" secondAttribute="bottom" constant="8.5" id="4OC-3P-lLp"/>
-                                                <constraint firstAttribute="trailing" secondItem="AT9-Bc-YEk" secondAttribute="trailing" constant="13" id="atq-wi-j2A"/>
-                                                <constraint firstItem="AT9-Bc-YEk" firstAttribute="leading" secondItem="au7-Km-L0R" secondAttribute="leading" constant="30" id="q9B-1p-rBy"/>
+                                                <constraint firstItem="AT9-Bc-YEk" firstAttribute="top" secondItem="au7-Km-L0R" secondAttribute="top" constant="16" id="3TM-Wt-6Ze"/>
+                                                <constraint firstAttribute="bottom" secondItem="AT9-Bc-YEk" secondAttribute="bottom" constant="15.5" id="4OC-3P-lLp"/>
+                                                <constraint firstItem="rhM-dd-8Pt" firstAttribute="top" secondItem="au7-Km-L0R" secondAttribute="topMargin" constant="1" id="IM9-jH-uQi"/>
+                                                <constraint firstAttribute="trailing" secondItem="AT9-Bc-YEk" secondAttribute="trailing" constant="15" id="atq-wi-j2A"/>
+                                                <constraint firstItem="AT9-Bc-YEk" firstAttribute="leading" secondItem="au7-Km-L0R" secondAttribute="leading" constant="77" id="q9B-1p-rBy"/>
+                                                <constraint firstItem="rhM-dd-8Pt" firstAttribute="leading" secondItem="au7-Km-L0R" secondAttribute="leadingMargin" constant="4" id="vv9-AA-F1I"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -154,6 +164,7 @@
     </scenes>
     <resources>
         <image name="icon" width="192" height="192"/>
+        <image name="user.png" width="48" height="48"/>
         <image name="logout" width="28" height="28"/>
     </resources>
 </document>

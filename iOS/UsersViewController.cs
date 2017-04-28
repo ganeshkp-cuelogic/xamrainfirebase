@@ -43,6 +43,7 @@ namespace FirebaseXamarin.iOS
         {
             showLoading("fetching users ...");
             DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
+			rootNode.KeepSynced(true);
             DatabaseReference userNode = rootNode.GetChild("users");
             userNode.ObserveEvent(DataEventType.Value, (snapshot) =>
             {
@@ -66,9 +67,11 @@ namespace FirebaseXamarin.iOS
 
                 InvokeOnMainThread(() =>
                 {
-                    userListDataSource = new UsersListDatasource(users);
-                    tblViewUsers.DataSource = userListDataSource;
-                    tblViewUsers.ReloadData();
+					if(users.Count > 0) {
+						userListDataSource = new UsersListDatasource(users);
+						tblViewUsers.DataSource = userListDataSource;
+						tblViewUsers.ReloadData();	
+					}
                 });
 
             });

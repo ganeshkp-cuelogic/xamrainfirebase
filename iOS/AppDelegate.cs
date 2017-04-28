@@ -1,4 +1,4 @@
-﻿using Foundation;
+﻿﻿using Foundation;
 using UIKit;
 using Firebase.Analytics;
 using Google.SignIn;
@@ -154,7 +154,10 @@ namespace FirebaseXamarin.iOS
                     // Let the user know that connection was successful
                     var token = InstanceId.SharedInstance.Token;
                     Console.WriteLine("FCM device token is - " + token);
-                    // Monitor token generation
+					// Monitor token generation
+					NSUserDefaults.StandardUserDefaults.SetString(token, "FirebaseToken");
+
+
                     InstanceId.Notifications.ObserveTokenRefresh((sender, e) =>
                     {
                         // Note that this callback will be fired everytime a new token is generated, including the first
@@ -162,6 +165,7 @@ namespace FirebaseXamarin.iOS
                         // should be done.
                         var refreshedToken = InstanceId.SharedInstance.Token;
                         Console.WriteLine("FCM device token refreshed is - " + token);
+						NSUserDefaults.StandardUserDefaults.SetString(refreshedToken, "FirebaseToken");
 
                         // Do your magic to refresh the token where is needed
                     });
