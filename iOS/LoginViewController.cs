@@ -9,7 +9,8 @@ using Firebase.Database;
 namespace FirebaseXamarin.iOS
 {
     public partial class LoginViewController : BaseViewController, ISignInDelegate, ISignInUIDelegate
-    {
+    {
+
         public SignInButton SignInBtn { get; private set; }
 
         public LoginViewController(IntPtr handle) : base(handle)

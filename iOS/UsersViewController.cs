@@ -56,7 +56,10 @@ namespace FirebaseXamarin.iOS
                 {
                     // Work with data...
                     var dictionaryData = child.GetValue<NSDictionary>();
-                    users.Add(User.fromDictionary(dictionaryData));
+                    if (dictionaryData["uid"].ToString() != DBManager.sharedManager.getLoggedInUserInfo().uid)
+                    {
+                        users.Add(User.fromDictionary(dictionaryData));
+                    }
 
                     child = children.NextObject() as DataSnapshot;
                 }

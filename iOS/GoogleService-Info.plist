@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>656927024586-u45sjl6h4pofhi24c1v8993ak7ptjnuq.apps.googleusercontent.com</string>
+	<string>332676424210-si6pkvudt7j2si06cdl084mmsk198vbn.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.656927024586-u45sjl6h4pofhi24c1v8993ak7ptjnuq</string>
+	<string>com.googleusercontent.apps.332676424210-si6pkvudt7j2si06cdl084mmsk198vbn</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDMh3KE_00K8T-v2_P1PFBpmuclGXe4yuA</string>
+	<string>AIzaSyAkpfTPlBFXfTYgrA-9tzDurnKHaUJ9cYM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>656927024586</string>
+	<string>332676424210</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.cuelogic.firebasexamarin</string>
 	<key>PROJECT_ID</key>
-	<string>fir-xamarin-7b362</string>
+	<string>cuelogic-firebase-chat-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>fir-xamarin-7b362.appspot.com</string>
+	<string>cuelogic-firebase-chat-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:656927024586:ios:e15f3ad45467ff02</string>
+	<string>1:332676424210:ios:e15f3ad45467ff02</string>
 	<key>DATABASE_URL</key>
-	<string>https://fir-xamarin-7b362.firebaseio.com</string>
+	<string>https://cuelogic-firebase-chat-app.firebaseio.com</string>
 </dict>
 </plist>

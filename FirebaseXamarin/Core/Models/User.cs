@@ -20,7 +20,7 @@ namespace FirebaseXamarin
 
         public NSDictionary ToDictionary()
         {
-            object[] keys = { "uid", "name", "emailid" };
+            object[] keys = { "uid", "displayName", "email" };
             object[] values = { this.uid, this.name, this.emailid };
             var data = NSDictionary.FromObjectsAndKeys(values, keys, keys.Length);
             return data;
@@ -29,9 +29,9 @@ namespace FirebaseXamarin
         public static User fromDictionary(NSDictionary userDictionary)
         {
             User user = new User();
-            user.emailid = userDictionary["emailid"].ToString();
+            user.emailid = userDictionary["email"].ToString();
             user.uid = userDictionary["uid"].ToString();
-            user.name = userDictionary["name"].ToString();
+            user.name = userDictionary["displayName"].ToString();
 
             return user;
         }
