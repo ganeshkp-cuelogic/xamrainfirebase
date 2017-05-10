@@ -161,6 +161,127 @@
             </objects>
             <point key="canvasLocation" x="920.8" y="-86.80659"/>
         </scene>
+        <!--Chats View Controller-->
+        <scene sceneID="50">
+            <objects>
+                <viewController id="51" customClass="ChatsViewController" sceneMemberID="viewController" storyboardIdentifier="ChatsViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="48"/>
+                        <viewControllerLayoutGuide type="bottom" id="49"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="52">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RD4-PX-IYD" misplaced="YES">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellRight" rowHeight="72" id="PSi-W6-3J3" userLabel="Cell Right">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PSi-W6-3J3" id="eRO-nW-gEh">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message goes here !!!!" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgJ-RK-3aG" misplaced="YES">
+                                                    <rect key="frame" x="11" y="9" width="290" height="28"/>
+                                                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="JS7-RA-Dfy" misplaced="YES">
+                                                    <rect key="frame" x="312" y="10" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="lVg-uW-XXF"/>
+                                                        <constraint firstAttribute="height" constant="50" id="rTG-DY-tjJ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28-Apr-2017 12:20PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlD-2o-4Qn" misplaced="YES">
+                                                    <rect key="frame" x="25" y="43" width="275" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Eno-AZ-63Y"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="JS7-RA-Dfy" firstAttribute="top" secondItem="eRO-nW-gEh" secondAttribute="top" constant="10" id="Q3c-RK-RvW"/>
+                                                <constraint firstAttribute="bottom" secondItem="rlD-2o-4Qn" secondAttribute="bottom" constant="8" id="a22-z3-CkB"/>
+                                                <constraint firstAttribute="trailing" secondItem="JS7-RA-Dfy" secondAttribute="trailing" constant="13" id="at9-s8-SzR"/>
+                                                <constraint firstItem="rlD-2o-4Qn" firstAttribute="leading" secondItem="eRO-nW-gEh" secondAttribute="leading" constant="25" id="daL-nE-rQT"/>
+                                                <constraint firstItem="JS7-RA-Dfy" firstAttribute="leading" secondItem="mgJ-RK-3aG" secondAttribute="trailing" constant="11" id="kXD-n0-CUo"/>
+                                                <constraint firstItem="rlD-2o-4Qn" firstAttribute="top" secondItem="mgJ-RK-3aG" secondAttribute="bottom" constant="6" id="oTN-kN-YpI"/>
+                                                <constraint firstItem="rlD-2o-4Qn" firstAttribute="top" secondItem="mgJ-RK-3aG" secondAttribute="bottom" constant="6" id="r9f-Xb-sR6"/>
+                                                <constraint firstItem="JS7-RA-Dfy" firstAttribute="leading" secondItem="rlD-2o-4Qn" secondAttribute="trailing" constant="12" id="tev-Mj-Eok"/>
+                                                <constraint firstAttribute="bottom" secondItem="JS7-RA-Dfy" secondAttribute="bottom" constant="12" id="toH-v0-39a"/>
+                                                <constraint firstItem="mgJ-RK-3aG" firstAttribute="top" secondItem="eRO-nW-gEh" secondAttribute="top" constant="9" id="vFz-fl-fyS"/>
+                                                <constraint firstItem="mgJ-RK-3aG" firstAttribute="leading" secondItem="eRO-nW-gEh" secondAttribute="leading" constant="11" id="z7G-dS-3Ob"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellLeft" rowHeight="72" id="Pbv-z0-Kl6" userLabel="Cell Left">
+                                        <rect key="frame" x="0.0" y="100" width="375" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pbv-z0-Kl6" id="zn9-xW-Hq7">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message goes here !!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaJ-XF-5y5" misplaced="YES">
+                                                    <rect key="frame" x="77" y="8" width="291" height="29"/>
+                                                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="7F0-qV-4m8">
+                                                    <rect key="frame" x="14" y="11" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="avM-29-hGH"/>
+                                                        <constraint firstAttribute="width" constant="50" id="x2L-OF-MGw"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28-Apr-2017 12:20PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBK-io-N9p" misplaced="YES">
+                                                    <rect key="frame" x="77" y="42" width="291" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="G3A-Ca-9HD"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LaJ-XF-5y5" firstAttribute="top" secondItem="zn9-xW-Hq7" secondAttribute="top" constant="8" id="1jF-kP-5tW"/>
+                                                <constraint firstAttribute="trailing" secondItem="nBK-io-N9p" secondAttribute="trailing" constant="7" id="ETc-ql-i8I"/>
+                                                <constraint firstAttribute="bottom" secondItem="nBK-io-N9p" secondAttribute="bottom" constant="9" id="eYu-hT-9OF"/>
+                                                <constraint firstItem="LaJ-XF-5y5" firstAttribute="leading" secondItem="7F0-qV-4m8" secondAttribute="trailing" constant="13" id="faP-xy-4L3"/>
+                                                <constraint firstItem="nBK-io-N9p" firstAttribute="top" secondItem="LaJ-XF-5y5" secondAttribute="bottom" constant="5" id="kYV-fR-mXU"/>
+                                                <constraint firstItem="nBK-io-N9p" firstAttribute="leading" secondItem="7F0-qV-4m8" secondAttribute="trailing" constant="13" id="lNY-A8-UwJ"/>
+                                                <constraint firstItem="7F0-qV-4m8" firstAttribute="top" secondItem="zn9-xW-Hq7" secondAttribute="top" constant="11" id="tdC-3W-yt8"/>
+                                                <constraint firstAttribute="trailing" secondItem="LaJ-XF-5y5" secondAttribute="trailing" constant="7" id="zdK-Of-FPv"/>
+                                                <constraint firstItem="7F0-qV-4m8" firstAttribute="leading" secondItem="zn9-xW-Hq7" secondAttribute="leading" constant="14" id="zlL-1b-hXS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RD4-PX-IYD" firstAttribute="leading" secondItem="52" secondAttribute="leading" id="Df0-zl-Fqp"/>
+                            <constraint firstItem="RD4-PX-IYD" firstAttribute="top" secondItem="48" secondAttribute="bottom" id="O0f-4H-y0g"/>
+                            <constraint firstAttribute="trailing" secondItem="RD4-PX-IYD" secondAttribute="trailing" id="ZAG-8G-kSL"/>
+                            <constraint firstItem="49" firstAttribute="top" secondItem="RD4-PX-IYD" secondAttribute="bottom" id="pt9-oN-sh8"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="53" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1592.8" y="-86.80659"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icon" width="192" height="192"/>

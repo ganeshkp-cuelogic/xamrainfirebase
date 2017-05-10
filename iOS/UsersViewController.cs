@@ -5,6 +5,7 @@ using Google.SignIn;
 using System.Threading.Tasks;
 using Firebase.Database;
 using System.Collections.Generic;
+using FirebaseXamarin.iOS.Delegates;
 
 namespace FirebaseXamarin.iOS
 {
@@ -37,13 +38,14 @@ namespace FirebaseXamarin.iOS
             NavigationController.NavigationBar.TintColor = UIColor.Black;
 
             tblViewUsers.TableFooterView = new UIView();
+            tblViewUsers.Delegate = new UserListDelegate(this);
         }
 
         private void fetchUsersAndDisplay()
         {
             showLoading("fetching users ...");
             DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
-			rootNode.KeepSynced(true);
+            rootNode.KeepSynced(true);
             DatabaseReference userNode = rootNode.GetChild("users");
             userNode.ObserveEvent(DataEventType.Value, (snapshot) =>
             {
@@ -67,11 +69,12 @@ namespace FirebaseXamarin.iOS
 
                 InvokeOnMainThread(() =>
                 {
-					if(users.Count > 0) {
-						userListDataSource = new UsersListDatasource(users);
-						tblViewUsers.DataSource = userListDataSource;
-						tblViewUsers.ReloadData();	
-					}
+                    if (users.Count > 0)
+                    {
+                        userListDataSource = new UsersListDatasource(users);
+                        tblViewUsers.DataSource = userListDataSource;
+                        tblViewUsers.ReloadData();
+                    }
                 });
 
             });

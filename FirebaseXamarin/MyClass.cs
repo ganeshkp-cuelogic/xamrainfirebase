@@ -5,6 +5,7 @@ namespace FirebaseXamarin
 	{
 		public MyClass()
 		{
+			
 		}
 	}
 }

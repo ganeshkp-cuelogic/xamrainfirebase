@@ -99,8 +99,8 @@ namespace FirebaseXamarin.iOS
                         userModel.emailid = userInfo.Email;
                         userModel.uid = userInfo.Uid;
                         userModel.name = userInfo.DisplayName;
-						userModel.profilePic = userInfo.PhotoUrl.AbsoluteString;
-						userModel.firebaseToken = NSUserDefaults.StandardUserDefaults.StringForKey("FirebaseToken");
+                        userModel.profilePic = userInfo.PhotoUrl.AbsoluteString;
+                        userModel.firebaseToken = NSUserDefaults.StandardUserDefaults.StringForKey("FirebaseToken");
                         DBManager.sharedManager.saveUserInfo(userModel);
 
                         //Add the user in firebase database
@@ -130,6 +130,5 @@ namespace FirebaseXamarin.iOS
         {
             DismissViewController(true, null);
         }
-
     }
 }

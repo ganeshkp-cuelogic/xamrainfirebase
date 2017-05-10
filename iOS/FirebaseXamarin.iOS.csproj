@@ -169,6 +169,11 @@
       <DependentUpon>UsersViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Datasources\UsersListDatasource.cs" />
+    <Compile Include="ChatsViewController.cs" />
+    <Compile Include="ChatsViewController.designer.cs">
+      <DependentUpon>ChatsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delegates\UserListDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="firebaseiosauth">
