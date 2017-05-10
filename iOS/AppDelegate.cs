@@ -1,4 +1,4 @@
-﻿﻿using Foundation;
+﻿using Foundation;
 using UIKit;
 using Firebase.Analytics;
 using Google.SignIn;
@@ -49,6 +49,11 @@ namespace FirebaseXamarin.iOS
             Database.DefaultInstance.PersistenceEnabled = true;
 
             DBManager.sharedManager.createTables();
+
+            if (DBManager.sharedManager.getLoggedInUserInfo() == null)
+            {
+                DBManager.sharedManager.saveUserInfo(User.getMyDummyUser());
+            }
 
             chooseWhereToGo();
             return true;
@@ -154,8 +159,8 @@ namespace FirebaseXamarin.iOS
                     // Let the user know that connection was successful
                     var token = InstanceId.SharedInstance.Token;
                     Console.WriteLine("FCM device token is - " + token);
-					// Monitor token generation
-					NSUserDefaults.StandardUserDefaults.SetString(token, "FirebaseToken");
+                    // Monitor token generation
+                    NSUserDefaults.StandardUserDefaults.SetString(token, "FirebaseToken");
 
 
                     InstanceId.Notifications.ObserveTokenRefresh((sender, e) =>
@@ -165,7 +170,7 @@ namespace FirebaseXamarin.iOS
                         // should be done.
                         var refreshedToken = InstanceId.SharedInstance.Token;
                         Console.WriteLine("FCM device token refreshed is - " + token);
-						NSUserDefaults.StandardUserDefaults.SetString(refreshedToken, "FirebaseToken");
+                        NSUserDefaults.StandardUserDefaults.SetString(refreshedToken, "FirebaseToken");
 
                         // Do your magic to refresh the token where is needed
                     });
@@ -202,8 +207,6 @@ namespace FirebaseXamarin.iOS
         {
             new UIAlertView("Error registering push notifications", error.LocalizedDescription, null, "OK", null).Show();
         }
-
-
 
     }
 }

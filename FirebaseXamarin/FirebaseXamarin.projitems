@@ -13,6 +13,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Models\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\DataBase\DBManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Interfaces\IDBManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Firebase\FirebaseConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Models\RoomsMetaData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Firebase\FirebaseManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Interfaces\IFirebaseManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Core\" />

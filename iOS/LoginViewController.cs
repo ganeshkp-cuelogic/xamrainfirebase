@@ -5,6 +5,7 @@ using Google.SignIn;
 using CoreGraphics;
 using Firebase.Auth;
 using Firebase.Database;
+using System.Collections.Generic;
 
 namespace FirebaseXamarin.iOS
 {
@@ -22,6 +23,13 @@ namespace FirebaseXamarin.iOS
         {
             base.ViewDidLoad();
             confugureUI();
+
+            //TODO - Remove this on Prod
+            User user = User.getMyDummyUser();
+            user.arrRoomId = new List<string>() { //TODO - Remove this 
+                "1", "2", "3"
+            }.ToString();
+            pushUserInfoToFirebase(user);
         }
 
         private void confugureUI()
@@ -42,8 +50,6 @@ namespace FirebaseXamarin.iOS
         {
             if (user != null && error == null)
             {
-
-
                 string emailID = user.Profile.Email;
                 if (emailID.EndsWith("cuelogic.co.in") || emailID.EndsWith("cuelogic.co.in"))
                 {
@@ -100,18 +106,29 @@ namespace FirebaseXamarin.iOS
                         userModel.uid = userInfo.Uid;
                         userModel.name = userInfo.DisplayName;
                         userModel.profilePic = userInfo.PhotoUrl.AbsoluteString;
-                        userModel.firebaseToken = NSUserDefaults.StandardUserDefaults.StringForKey("FirebaseToken");
+                        userModel.firebaseToken = NSUserDefaults.StandardUserDefaults.StringForKey(FirebaseConstants.FB_TOKEN);
+
+                        userModel.arrRoomId = new List<string>() { //TODO - Remove this 
+                            "1", "2", "3"
+                        }.ToString();
+
                         DBManager.sharedManager.saveUserInfo(userModel);
 
-                        //Add the user in firebase database
-                        DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
-                        DatabaseReference userNode = rootNode.GetChild("users").GetChild(userModel.uid);
-                        userNode.SetValue<NSDictionary>(userModel.ToDictionary());
+                        pushUserInfoToFirebase(userModel);
                     }
 
                 });
             }
         }
+
+        private void pushUserInfoToFirebase(User userInfoModel)
+        {
+            //Add the user in firebase database
+            DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
+            DatabaseReference userNode = rootNode.GetChild("users").GetChild(userInfoModel.uid);
+            userNode.UpdateChildValues(userInfoModel.ToDictionary());
+        }
+
 
         [Export("signInWillDispatch:error:")]
         public void WillDispatch(SignIn signIn, NSError error)

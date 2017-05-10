@@ -44,28 +44,9 @@ namespace FirebaseXamarin.iOS
         private void fetchUsersAndDisplay()
         {
             showLoading("fetching users ...");
-            DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
-            rootNode.KeepSynced(true);
-            DatabaseReference userNode = rootNode.GetChild("users");
-            userNode.ObserveEvent(DataEventType.Value, (snapshot) =>
+            FirebaseManager.sharedManager.getAllUser((List<User> users) =>
             {
                 hideLoading();
-                // Loop over the children
-                NSEnumerator children = snapshot.Children;
-                var child = children.NextObject() as DataSnapshot;
-
-                List<User> users = new List<User>();
-                while (child != null)
-                {
-                    // Work with data...
-                    var dictionaryData = child.GetValue<NSDictionary>();
-                    if (dictionaryData["uid"].ToString() != DBManager.sharedManager.getLoggedInUserInfo().uid)
-                    {
-                        users.Add(User.fromDictionary(dictionaryData));
-                    }
-
-                    child = children.NextObject() as DataSnapshot;
-                }
 
                 InvokeOnMainThread(() =>
                 {
@@ -76,7 +57,6 @@ namespace FirebaseXamarin.iOS
                         tblViewUsers.ReloadData();
                     }
                 });
-
             });
         }
     }
