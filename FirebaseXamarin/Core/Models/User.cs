@@ -26,11 +26,16 @@ namespace FirebaseXamarin
 
         public NSDictionary ToDictionary()
         {
-            object[] keys = { "uid", "displayName", "email", "photoUrl", "firebaseToken" };
-            object[] values = { this.uid, this.name, this.emailid, this.profilePic, this.firebaseToken };
+            object[] keys = { "uid", "displayName", "email", "photoUrl", "firebaseToken", FirebaseConstants.FB_ROOMS };
+            object[] values = { this.uid, this.name, this.emailid, this.profilePic, this.firebaseToken, toRoomsIDsArray() };
             var data = NSMutableDictionary.FromObjectsAndKeys(values, keys, keys.Length);
             // data.SetValueForKey(getRoomIdArray(), new NSString(FirebaseConstants.FB_ROOMS));
             return data;
+        }
+
+        public NSArray toRoomsIDsArray()
+        {
+             return NSArray.FromObjects(arrRoomId.Split(','));
         }
 
         public static User fromDictionary(NSDictionary userDictionary)
@@ -46,18 +51,10 @@ namespace FirebaseXamarin
             return user;
         }
 
-        public NSArray getRoomIdArray()
-        {
-            NSMutableArray arrIds = new NSMutableArray();
-            foreach (string id in arrRoomId.Split(','))
-            {
-                arrIds.Add(new NSString(id));
-            }
-
-            return NSArray.FromObjects(arrRoomId.Split(','));
-
-            //return arrIds;
-        }
+        //public NSArray getRoomIdArray()
+        //{
+        //    return arrRoomId.Split(',');
+        //}
 
         public static User getMyDummyUser()
         {

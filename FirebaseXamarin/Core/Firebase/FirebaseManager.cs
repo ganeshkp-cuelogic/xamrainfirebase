@@ -38,7 +38,13 @@ namespace FirebaseXamarin
                 });
         }
 
-        public void createGroup()
+        public void createGroup(RoomsMetaData roomMetatData)
+        {
+            DatabaseReference roomNode = rootNode.GetChild(FirebaseConstants.FB_ROOMS);
+            roomNode.GetChildByAutoId().UpdateChildValues(roomMetatData.toDictionary());
+        }
+
+        public void fetchAllRooms()
         {
 
         }

@@ -22,6 +22,10 @@ namespace FirebaseXamarin.iOS
             base.ViewDidLoad();
             configureUI();
             fetchUsersAndDisplay();
+
+            //TODO - Remove the Hard Coded Functions
+            createGroups();
+            fetchAllRooms();
         }
 
         private void configureUI()
@@ -59,5 +63,24 @@ namespace FirebaseXamarin.iOS
                 });
             });
         }
+
+        private void createGroups()
+        {
+            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+            RoomsMetaData roomMetaData = new RoomsMetaData();
+            roomMetaData.createdBy = "YKigRRuykkYBnWXf4r3DmtFaOAH3";
+            roomMetaData.createdTime = unixTimestamp + "";
+            roomMetaData.displayName = "The Happyboys - Xamarin Champs";
+            roomMetaData.lastUpdatedTime = unixTimestamp + "";
+            roomMetaData.users = new List<string>() { "VIGPpLLUhLP0klnv9prPEE4c88A3", "VWyzg1wV5Lhez2nhGpUaRI83c9c2", "Y921Ai9R2NUatWbJcrPp97OHAO83", "YKigRRuykkYBnWXf4r3DmtFaOAH3" };
+            FirebaseManager.sharedManager.createGroup(roomMetaData);
+        }
+
+        private void fetchAllRooms()
+        {
+
+        }
+
     }
 }
