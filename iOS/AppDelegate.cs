@@ -50,10 +50,10 @@ namespace FirebaseXamarin.iOS
 
             DBManager.sharedManager.createTables();
 
-            if (DBManager.sharedManager.getLoggedInUserInfo() == null)
-            {
-                DBManager.sharedManager.saveUserInfo(User.getMyDummyUser());
-            }
+            //if (DBManager.sharedManager.getLoggedInUserInfo() == null)
+            //{
+            //    DBManager.sharedManager.saveUserInfo(User.getMyDummyUser());
+            //}
 
             chooseWhereToGo();
             return true;
