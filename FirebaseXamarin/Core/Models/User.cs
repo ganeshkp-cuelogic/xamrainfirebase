@@ -4,6 +4,7 @@ using Foundation;
 using System.Collections.Generic;
 using System.Linq;
 using SystemConfiguration;
+using Newtonsoft.Json;
 
 namespace FirebaseXamarin
 {
@@ -22,7 +23,9 @@ namespace FirebaseXamarin
         public string emailid { get; set; }
         public string profilePic { get; set; }
         public string firebaseToken { get; set; }
-        public string arrRoomId { get; set; }
+
+        [Ignore]
+        public List<string> arrRoomId { get; set; }
 
         public NSDictionary ToDictionary()
         {
@@ -35,7 +38,7 @@ namespace FirebaseXamarin
 
         public NSArray toRoomsIDsArray()
         {
-             return NSArray.FromObjects(arrRoomId.Split(','));
+            return NSArray.FromObjects(arrRoomId);
         }
 
         public static User fromDictionary(NSDictionary userDictionary)
@@ -46,9 +49,21 @@ namespace FirebaseXamarin
             user.name = userDictionary["displayName"].ToString();
             user.profilePic = userDictionary["photoUrl"].ToString();
             user.firebaseToken = (userDictionary[FirebaseConstants.FB_TOKEN] == null) ? "" : userDictionary[FirebaseConstants.FB_TOKEN].ToString();
-            user.arrRoomId = (userDictionary[FirebaseConstants.FB_ROOMS] == null) ? "" : userDictionary[FirebaseConstants.FB_ROOMS].ToString();
-
+            if (userDictionary[FirebaseConstants.FB_ROOMS] != null)
+            {
+                user.arrRoomId = ConvertToList(userDictionary[FirebaseConstants.FB_ROOMS] as NSArray);
+            }
             return user;
+        }
+
+        public static List<string> ConvertToList(NSArray arrRooms)
+        {
+            List<string> roomIds = new List<string>();
+            for (nuint i = 0; i < arrRooms.Count; i++)
+            {
+                roomIds.Add((arrRooms.GetItem<NSString>(i)).ToString());
+            }
+            return roomIds;
         }
 
         //public NSArray getRoomIdArray()

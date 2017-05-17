@@ -26,7 +26,6 @@ namespace FirebaseXamarin.iOS
 
             //TODO - Remove this on Prod
             User user = User.getMyDummyUser();
-            user.arrRoomId = "1,2,3";
 
             pushUserInfoToFirebase(user);
         }
@@ -106,8 +105,6 @@ namespace FirebaseXamarin.iOS
                         userModel.name = userInfo.DisplayName;
                         userModel.profilePic = userInfo.PhotoUrl.AbsoluteString;
                         userModel.firebaseToken = NSUserDefaults.StandardUserDefaults.StringForKey(FirebaseConstants.FB_TOKEN);
-
-                        userModel.arrRoomId = "1, 2, 3";
 
                         DBManager.sharedManager.saveUserInfo(userModel);
 

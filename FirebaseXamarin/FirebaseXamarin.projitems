@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Firebase\FirebaseManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Interfaces\IFirebaseManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Models\Message.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Core\" />
@@ -26,5 +27,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Core\DataBase\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\Interfaces\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\Firebase\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\Utils\" />
   </ItemGroup>
 </Project>

@@ -125,6 +125,12 @@
     <Reference Include="SDWebImage">
       <HintPath>..\packages\Xamarin.SDWebImage.3.7.5\lib\Xamarin.iOS\SDWebImage.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -135,6 +141,15 @@
     <ImageAsset Include="Assets.xcassets\icon.imageset\icon.png" />
     <ImageAsset Include="Assets.xcassets\logout.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\logout.imageset\power.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\splash.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\splash.imageset\splash.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\.DS_Store" />
+    <ImageAsset Include="Resources\Assets.xcassets\chat.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\chat.imageset\chat.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\settings.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\settings.imageset\settings %281%29.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\users.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\users.imageset\users.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -144,10 +159,12 @@
     <Folder Include="Assets.xcassets\logout.imageset\" />
     <Folder Include="Datasources\" />
     <Folder Include="Delegates\" />
+    <Folder Include="Cells\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Cells\ChatRoomsCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -177,6 +194,24 @@
       <DependentUpon>ChatsViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Delegates\UserListDelegate.cs" />
+    <Compile Include="SplashScreenViewController.cs" />
+    <Compile Include="SplashScreenViewController.designer.cs">
+      <DependentUpon>SplashScreenViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatTabBarController.cs" />
+    <Compile Include="ChatTabBarController.designer.cs">
+      <DependentUpon>ChatTabBarController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyChatRoomsViewController.cs" />
+    <Compile Include="MyChatRoomsViewController.designer.cs">
+      <DependentUpon>MyChatRoomsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Datasources\MyChatRoomsDatasource.cs" />
+    <Compile Include="Cells\ChatRoomsCell.cs" />
+    <Compile Include="Cells\ChatRoomsCell.designer.cs">
+      <DependentUpon>ChatRoomsCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delegates\MyChatRoomsDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="firebaseiosauth">

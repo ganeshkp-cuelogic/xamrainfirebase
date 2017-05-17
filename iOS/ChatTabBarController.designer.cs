@@ -11,19 +11,11 @@ using UIKit;
 
 namespace FirebaseXamarin.iOS
 {
-    [Register ("UsersViewController")]
-    partial class UsersViewController
+    [Register ("ChatTabBarController")]
+    partial class ChatTabBarController
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView tblViewUsers { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
-            if (tblViewUsers != null) {
-                tblViewUsers.Dispose ();
-                tblViewUsers = null;
-            }
         }
     }
 }

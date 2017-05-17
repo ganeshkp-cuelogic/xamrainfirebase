@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChatRoomsCell" rowHeight="74" id="O7O-IU-xwt" customClass="ChatRoomsCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O7O-IU-xwt" id="VII-t5-gBx">
+                <rect key="frame" x="0.0" y="0.0" width="342" height="73.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="200" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Chat Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlT-2B-3t1">
+                        <rect key="frame" x="74" y="10" width="187" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="29" id="GDA-8T-nNw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="XK5-pa-saB">
+                        <rect key="frame" x="11" y="13" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="3L9-sJ-AOh"/>
+                            <constraint firstAttribute="height" constant="50" id="GFA-H5-5QQ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="300" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Last Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87F-Og-tDX">
+                        <rect key="frame" x="74" y="42" width="218" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="2iE-Sc-zuS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uvb-bI-uO9">
+                        <rect key="frame" x="310" y="41" width="24" height="24"/>
+                        <color key="backgroundColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="c9c-qV-nKZ"/>
+                            <constraint firstAttribute="width" constant="24" id="m9d-KM-pDz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15-05-2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lj4-Kd-vTd">
+                        <rect key="frame" x="276" y="14" width="66" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="66" id="8W0-ei-dBJ"/>
+                            <constraint firstAttribute="height" constant="21" id="NRI-Y3-xEh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="11"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="XK5-pa-saB" firstAttribute="leading" secondItem="VII-t5-gBx" secondAttribute="leading" constant="11" id="41b-pP-ZM1"/>
+                    <constraint firstItem="87F-Og-tDX" firstAttribute="top" secondItem="ZlT-2B-3t1" secondAttribute="bottom" constant="3" id="Apy-b4-cPk"/>
+                    <constraint firstItem="lj4-Kd-vTd" firstAttribute="leading" secondItem="ZlT-2B-3t1" secondAttribute="trailing" constant="15" id="Cos-G5-KqA"/>
+                    <constraint firstAttribute="bottom" secondItem="XK5-pa-saB" secondAttribute="bottom" constant="10.5" id="CxL-eD-enF"/>
+                    <constraint firstItem="lj4-Kd-vTd" firstAttribute="top" secondItem="VII-t5-gBx" secondAttribute="topMargin" constant="6" id="E7Q-te-U7X"/>
+                    <constraint firstItem="ZlT-2B-3t1" firstAttribute="top" secondItem="VII-t5-gBx" secondAttribute="top" constant="10" id="Pza-Sa-X7f"/>
+                    <constraint firstItem="Uvb-bI-uO9" firstAttribute="top" secondItem="lj4-Kd-vTd" secondAttribute="bottom" constant="6" id="Rlf-KA-hwg"/>
+                    <constraint firstItem="Uvb-bI-uO9" firstAttribute="leading" secondItem="87F-Og-tDX" secondAttribute="trailing" constant="18" id="XA4-Ef-ofN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="lj4-Kd-vTd" secondAttribute="trailing" constant="-8" id="acb-Jd-m28"/>
+                    <constraint firstItem="87F-Og-tDX" firstAttribute="leading" secondItem="XK5-pa-saB" secondAttribute="trailing" constant="13" id="d6J-Vd-4uQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Uvb-bI-uO9" secondAttribute="trailing" id="eNb-9d-SiM"/>
+                    <constraint firstItem="ZlT-2B-3t1" firstAttribute="leading" secondItem="XK5-pa-saB" secondAttribute="trailing" constant="13" id="mMt-QK-r48"/>
+                    <constraint firstAttribute="bottom" secondItem="87F-Og-tDX" secondAttribute="bottom" constant="10.5" id="rHT-Yc-AuF"/>
+                    <constraint firstItem="XK5-pa-saB" firstAttribute="top" secondItem="VII-t5-gBx" secondAttribute="top" constant="13" id="wUq-sP-p6J"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgViewProfile" destination="XK5-pa-saB" id="name-outlet-XK5-pa-saB"/>
+                <outlet property="lblChatRoomName" destination="ZlT-2B-3t1" id="name-outlet-ZlT-2B-3t1"/>
+                <outlet property="lblDateTime" destination="lj4-Kd-vTd" id="name-outlet-lj4-Kd-vTd"/>
+                <outlet property="lblLastMessage" destination="87F-Og-tDX" id="name-outlet-87F-Og-tDX"/>
+                <outlet property="lblMessageCount" destination="Uvb-bI-uO9" id="name-outlet-Uvb-bI-uO9"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="user.png" width="48" height="48"/>
+    </resources>
+</document>
