@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LeftChatMessageCell" rowHeight="72" id="Eni-Tx-ein" customClass="LeftChatMessageCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eni-Tx-ein" id="nZT-Pd-7dG">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message goes here !!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQ4-mw-YZQ">
+                        <rect key="frame" x="77" y="11" width="291" height="28.5"/>
+                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="p3v-iG-v86">
+                        <rect key="frame" x="14" y="11" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="1gy-dI-TWo"/>
+                            <constraint firstAttribute="height" constant="50" id="Aav-3k-LYj"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28-Apr-2017 12:20PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBN-qT-7Jn">
+                        <rect key="frame" x="77" y="41" width="291" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="5Oa-Yr-4nT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="DBN-qT-7Jn" secondAttribute="trailing" constant="7" id="0Kx-mN-8oK"/>
+                    <constraint firstItem="p3v-iG-v86" firstAttribute="top" secondItem="nZT-Pd-7dG" secondAttribute="top" constant="11" id="11H-eD-36L"/>
+                    <constraint firstItem="DBN-qT-7Jn" firstAttribute="top" secondItem="lQ4-mw-YZQ" secondAttribute="bottom" constant="1.5" id="18f-rm-c74"/>
+                    <constraint firstItem="DBN-qT-7Jn" firstAttribute="leading" secondItem="p3v-iG-v86" secondAttribute="trailing" constant="13" id="97O-0f-tYX"/>
+                    <constraint firstAttribute="trailing" secondItem="lQ4-mw-YZQ" secondAttribute="trailing" constant="7" id="BNV-d9-JDC"/>
+                    <constraint firstItem="lQ4-mw-YZQ" firstAttribute="leading" secondItem="p3v-iG-v86" secondAttribute="trailing" constant="13" id="JcQ-sB-WtE"/>
+                    <constraint firstItem="p3v-iG-v86" firstAttribute="leading" secondItem="nZT-Pd-7dG" secondAttribute="leading" constant="14" id="ZjZ-KG-Rmv"/>
+                    <constraint firstItem="lQ4-mw-YZQ" firstAttribute="top" secondItem="nZT-Pd-7dG" secondAttribute="top" constant="11" id="rMC-fK-qp3"/>
+                    <constraint firstAttribute="bottom" secondItem="DBN-qT-7Jn" secondAttribute="bottom" constant="9" id="v99-WE-PLn"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgViewProfile" destination="p3v-iG-v86" id="name-outlet-p3v-iG-v86"/>
+                <outlet property="lblDateTime" destination="DBN-qT-7Jn" id="name-outlet-DBN-qT-7Jn"/>
+                <outlet property="lblMessage" destination="lQ4-mw-YZQ" id="name-outlet-lQ4-mw-YZQ"/>
+            </connections>
+            <point key="canvasLocation" x="31" y="-37"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="user.png" width="48" height="48"/>
+    </resources>
+</document>

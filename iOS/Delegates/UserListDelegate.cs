@@ -16,8 +16,7 @@ namespace FirebaseXamarin.iOS.Delegates
 
         public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
         {
-            ChatsViewController chatsViewController = (ChatsViewController)listViewController.Storyboard.InstantiateViewController("ChatsViewController");
-            listViewController.NavigationController.PushViewController(chatsViewController, true);
+
         }
 
     }

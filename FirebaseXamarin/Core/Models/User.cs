@@ -61,7 +61,10 @@ namespace FirebaseXamarin
             List<string> roomIds = new List<string>();
             for (nuint i = 0; i < arrRooms.Count; i++)
             {
-                roomIds.Add((arrRooms.GetItem<NSString>(i)).ToString());
+                if (arrRooms.GetItem<NSString>(i) != null)
+                {
+                    roomIds.Add((arrRooms.GetItem<NSString>(i)).ToString());
+                }
             }
             return roomIds;
         }

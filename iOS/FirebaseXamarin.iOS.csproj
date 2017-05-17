@@ -165,6 +165,8 @@
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Cells\ChatRoomsCell.xib" />
+    <InterfaceDefinition Include="Cells\LeftChatMessageCell.xib" />
+    <InterfaceDefinition Include="Cells\RightChatMessageCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -212,6 +214,15 @@
       <DependentUpon>ChatRoomsCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Delegates\MyChatRoomsDelegate.cs" />
+    <Compile Include="Datasources\ChatMessagesDatasource.cs" />
+    <Compile Include="Cells\LeftChatMessageCell.cs" />
+    <Compile Include="Cells\LeftChatMessageCell.designer.cs">
+      <DependentUpon>LeftChatMessageCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cells\RightChatMessageCell.cs" />
+    <Compile Include="Cells\RightChatMessageCell.designer.cs">
+      <DependentUpon>RightChatMessageCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="firebaseiosauth">

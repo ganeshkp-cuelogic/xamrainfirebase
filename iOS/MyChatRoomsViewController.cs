@@ -44,6 +44,7 @@ namespace FirebaseXamarin.iOS
                     hideLoading();
                     chatRoomsDataSource = new MyChatRoomsDatasource(rooms);
                     tblViewChatRooms.Source = chatRoomsDataSource;
+                    tblViewChatRooms.Delegate = new MyChatRoomsDelegate(NavigationController, rooms);
                     tblViewChatRooms.ReloadData();
                 });
             });
