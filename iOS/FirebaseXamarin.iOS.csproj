@@ -150,6 +150,8 @@
     <ImageAsset Include="Resources\Assets.xcassets\settings.imageset\settings %281%29.png" />
     <ImageAsset Include="Resources\Assets.xcassets\users.imageset\Contents.json" />
     <ImageAsset Include="Resources\Assets.xcassets\users.imageset\users.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\send-button.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\send-button.imageset\send-button %281%29.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -222,6 +224,11 @@
     <Compile Include="Cells\RightChatMessageCell.cs" />
     <Compile Include="Cells\RightChatMessageCell.designer.cs">
       <DependentUpon>RightChatMessageCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GPTextView.cs" />
+    <Compile Include="GPTextView.cs" />
+    <Compile Include="GPTextView.designer.cs">
+      <DependentUpon>GPTextView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

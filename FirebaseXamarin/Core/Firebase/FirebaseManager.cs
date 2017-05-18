@@ -154,6 +154,13 @@ namespace FirebaseXamarin
 
 		}
 
+		public void sendMessage(Message message)
+		{
+			DatabaseReference messageNode = rootNode.GetChild(FirebaseConstants.FB_NODE_MESSAGES);
+			DatabaseReference roomNode = messageNode.GetChild(message.roomId);
+			roomNode.GetChildByAutoId().UpdateChildValues(message.toDictionary());
+		}
+
 	}
 }
 

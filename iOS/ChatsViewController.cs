@@ -3,52 +3,171 @@ using System;
 using UIKit;
 using System.Collections.Generic;
 using AVFoundation;
+using FirebaseXamarin.Core.Utils;
 
 namespace FirebaseXamarin.iOS
 {
-    public partial class ChatsViewController : BaseViewController
-    {
-        private RoomsMetaData roomMeataData;
+	public partial class ChatsViewController : BaseViewController
+	{
+		private RoomsMetaData roomMeataData;
+		NSObject notification;
 
-        public void setRoomMetaData(RoomsMetaData roomMetaData)
-        {
-            this.roomMeataData = roomMetaData;
-        }
+		public void setRoomMetaData(RoomsMetaData roomMetaData)
+		{
+			this.roomMeataData = roomMetaData;
+		}
 
-        public ChatsViewController(IntPtr handle) : base(handle)
-        {
+		public ChatsViewController(IntPtr handle) : base(handle)
+		{
 
-        }
+		}
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+		#region View Life Cycle
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
 
-            configureUI();
-            fetchMessages();
-        }
+			configureUI();
+			fetchMessages();
+		}
 
-        private void configureUI()
-        {
-            NavigationController.NavigationBarHidden = false;
-            NavigationController.NavigationItem.Title = roomMeataData.displayName;
-            tblViewChats.RegisterNibForCellReuse(UINib.FromName("LeftChatMessageCell", NSBundle.MainBundle), LeftChatMessageCell.Key);
-            tblViewChats.RegisterNibForCellReuse(UINib.FromName("RightChatMessageCell", NSBundle.MainBundle), RightChatMessageCell.Key);
-        }
+		public override void ViewDidDisappear(bool animated)
+		{
+			stopObservingKeyboard();
+		}
+		#endregion
 
-        private void fetchMessages()
-        {
-            showLoading("Fetching Messages ...");
-            FirebaseManager.sharedManager.getAllRoomMessages(roomMeataData.roomId, (List<Message> messages) =>
-            {
-                InvokeOnMainThread(() =>
-                {
-                    hideLoading();
-                    ChatMessagesDatasource chatDataSource = new ChatMessagesDatasource(messages);
-                    tblViewChats.DataSource = chatDataSource;
-                    tblViewChats.ReloadData();
-                });
-            });
-        }
-    }
+		#region Private Methods
+		private void configureUI()
+		{
+			NavigationController.NavigationBarHidden = false;
+			NavigationController.NavigationBar.TintColor = UIColor.Black;
+			Title = roomMeataData.displayName;
+
+			SetupKeyboardObserver();
+
+			tblViewChats.RegisterNibForCellReuse(UINib.FromName("LeftChatMessageCell", NSBundle.MainBundle), LeftChatMessageCell.Key);
+			tblViewChats.RegisterNibForCellReuse(UINib.FromName("RightChatMessageCell", NSBundle.MainBundle), RightChatMessageCell.Key);
+			tblViewChats.RowHeight = UITableView.AutomaticDimension;
+			tblViewChats.EstimatedRowHeight = new nfloat(15.0);
+
+			btnSend.TouchUpInside += (sender, e) =>
+			{
+				validateMessage();
+				sendMessage();
+				View.EndEditing(true);
+				configureTextView();
+			};
+
+			tblViewChats.AddGestureRecognizer(new UITapGestureRecognizer((UITapGestureRecognizer obj) =>
+			{
+				View.EndEditing(true);
+			}));
+
+			configureTextView();
+		}
+
+		void configureTextView()
+		{
+			var Placeholder = "Enter Message";
+			txtViewChatMessage.Text = Placeholder;
+			txtViewChatMessage.ShouldBeginEditing = t =>
+			{
+				if (txtViewChatMessage.Text == Placeholder)
+					txtViewChatMessage.Text = string.Empty;
+
+				return true;
+			};
+
+			txtViewChatMessage.ShouldEndEditing = t =>
+			{
+				if (string.IsNullOrEmpty(txtViewChatMessage.Text))
+					txtViewChatMessage.Text = Placeholder;
+				return true;
+			};
+		}
+
+		private void moveToEnd()
+		{
+
+		}
+
+		private bool validateMessage()
+		{
+			bool status = true;
+			if (txtViewChatMessage.Text.Trim(' ').Length == 0)
+			{
+				status = false;
+				ShowAlert("Alert", "Please enter the message", "Ok");
+			}
+
+			return status;
+		}
+
+		private void sendMessage()
+		{
+			//Hit send message API
+			Message message = new Message();
+			message.message = txtViewChatMessage.Text.Trim(' ');
+			message.timestamp = Utils.getCurrentTime();
+			message.roomId = roomMeataData.roomId;
+			message.sender_id = DBManager.sharedManager.getLoggedInUserInfo().uid;
+			FirebaseManager.sharedManager.sendMessage(message);
+		}
+
+		private void fetchMessages()
+		{
+			showLoading("Fetching Messages ...");
+			FirebaseManager.sharedManager.getAllRoomMessages(roomMeataData.roomId, (List<Message> messages) =>
+			{
+				InvokeOnMainThread(() =>
+				{
+					hideLoading();
+					ChatMessagesDatasource chatDataSource = new ChatMessagesDatasource(messages);
+					tblViewChats.DataSource = chatDataSource;
+					tblViewChats.ReloadData();
+					tblViewChats.ScrollToRow(NSIndexPath.FromRowSection(messages.Count - 1, 0), UITableViewScrollPosition.Bottom, true);
+				});
+			});
+		}
+		#endregion
+
+		#region Observe Keyboard
+		void SetupKeyboardObserver()
+		{
+			bottomConstraint.Constant = 0;
+			// listening
+			notification = UIKeyboard.Notifications.ObserveWillShow((sender, args) =>
+			{
+				/* Access strongly typed args */
+				Console.WriteLine("Notification: {0}", args.Notification);
+
+				Console.WriteLine("FrameBegin", args.FrameBegin);
+				Console.WriteLine("FrameEnd", args.FrameEnd);
+				Console.WriteLine("AnimationDuration", args.AnimationDuration);
+				Console.WriteLine("AnimationCurve", args.AnimationCurve);
+
+				bottomConstraint.Constant = args.FrameEnd.Size.Height;
+			});
+
+			notification = UIKeyboard.Notifications.ObserveWillHide((sender, args) =>
+			{
+				/* Access strongly typed args */
+				Console.WriteLine("Notification: {0}", args.Notification);
+
+				Console.WriteLine("FrameBegin", args.FrameBegin);
+				Console.WriteLine("FrameEnd", args.FrameEnd);
+				Console.WriteLine("AnimationDuration", args.AnimationDuration);
+				Console.WriteLine("AnimationCurve", args.AnimationCurve);
+
+				bottomConstraint.Constant = 0;
+			});
+		}
+
+		void stopObservingKeyboard()
+		{
+			notification.Dispose();
+		}
+		#endregion
+	}
 }

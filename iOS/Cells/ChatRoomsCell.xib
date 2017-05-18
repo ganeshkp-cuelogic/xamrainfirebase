@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" tag="200" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Chat Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlT-2B-3t1">
-                        <rect key="frame" x="74" y="10" width="187" height="29"/>
+                        <rect key="frame" x="74" y="10" width="167" height="29"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="29" id="GDA-8T-nNw"/>
                         </constraints>
@@ -56,12 +56,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15-05-2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lj4-Kd-vTd">
-                        <rect key="frame" x="276" y="14" width="66" height="21"/>
+                        <rect key="frame" x="249" y="14" width="93" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="66" id="8W0-ei-dBJ"/>
+                            <constraint firstAttribute="width" constant="93" id="8W0-ei-dBJ"/>
                             <constraint firstAttribute="height" constant="21" id="NRI-Y3-xEh"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="11"/>
+                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -69,7 +69,7 @@
                 <constraints>
                     <constraint firstItem="XK5-pa-saB" firstAttribute="leading" secondItem="VII-t5-gBx" secondAttribute="leading" constant="11" id="41b-pP-ZM1"/>
                     <constraint firstItem="87F-Og-tDX" firstAttribute="top" secondItem="ZlT-2B-3t1" secondAttribute="bottom" constant="3" id="Apy-b4-cPk"/>
-                    <constraint firstItem="lj4-Kd-vTd" firstAttribute="leading" secondItem="ZlT-2B-3t1" secondAttribute="trailing" constant="15" id="Cos-G5-KqA"/>
+                    <constraint firstItem="lj4-Kd-vTd" firstAttribute="leading" secondItem="ZlT-2B-3t1" secondAttribute="trailing" constant="8" id="Cos-G5-KqA"/>
                     <constraint firstAttribute="bottom" secondItem="XK5-pa-saB" secondAttribute="bottom" constant="10.5" id="CxL-eD-enF"/>
                     <constraint firstItem="lj4-Kd-vTd" firstAttribute="top" secondItem="VII-t5-gBx" secondAttribute="topMargin" constant="6" id="E7Q-te-U7X"/>
                     <constraint firstItem="ZlT-2B-3t1" firstAttribute="top" secondItem="VII-t5-gBx" secondAttribute="top" constant="10" id="Pza-Sa-X7f"/>
@@ -90,6 +90,7 @@
                 <outlet property="lblLastMessage" destination="87F-Og-tDX" id="name-outlet-87F-Og-tDX"/>
                 <outlet property="lblMessageCount" destination="Uvb-bI-uO9" id="name-outlet-Uvb-bI-uO9"/>
             </connections>
+            <point key="canvasLocation" x="25.5" y="52"/>
         </tableViewCell>
     </objects>
     <resources>

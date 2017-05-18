@@ -18,7 +18,7 @@ namespace FirebaseXamarin
 		public NSDictionary toDictionary()
 		{
 			object[] keys = { FirebaseConstants.FB_MESSAGE, FirebaseConstants.FB_SENDER_UID, FirebaseConstants.FB_TIMESTAMP, FirebaseConstants.FB_ROOM_ID };
-			object[] values = { this.message, this.sender_id, this.timestamp, this.roomId };
+			object[] values = { this.message, this.sender_id, Convert.ToDouble(this.timestamp), this.roomId };
 			var data = NSMutableDictionary.FromObjectsAndKeys(values, keys, keys.Length);
 			return data;
 		}
