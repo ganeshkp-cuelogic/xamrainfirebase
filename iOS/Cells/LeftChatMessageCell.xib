@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="p3v-iG-v86">
-                        <rect key="frame" x="14" y="24.5" width="50" height="50"/>
+                        <rect key="frame" x="14" y="11.5" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="1gy-dI-TWo"/>
                             <constraint firstAttribute="height" constant="50" id="Aav-3k-LYj"/>
@@ -29,7 +29,7 @@
                         <rect key="frame" x="72" y="8" width="273" height="78"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28-Apr-2017 12:20PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBN-qT-7Jn">
-                                <rect key="frame" x="12" y="51" width="148" height="21"/>
+                                <rect key="frame" x="12" y="55" width="199" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="tgF-qe-3AJ"/>
                                 </constraints>
@@ -37,8 +37,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message goes here !!!!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQ4-mw-YZQ">
-                                <rect key="frame" x="11" y="31" width="262" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Message goes here !!!!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQ4-mw-YZQ">
+                                <rect key="frame" x="11" y="32" width="262" height="19"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -56,21 +56,26 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="E6r-mJ-eMc" firstAttribute="leading" secondItem="k9O-9F-p1Y" secondAttribute="leading" constant="11" id="1I5-Wq-YkA"/>
-                            <constraint firstAttribute="bottom" secondItem="DBN-qT-7Jn" secondAttribute="bottom" constant="6" id="63a-nB-6ok"/>
+                            <constraint firstItem="lQ4-mw-YZQ" firstAttribute="top" secondItem="E6r-mJ-eMc" secondAttribute="bottom" id="5fX-ve-vbu"/>
+                            <constraint firstAttribute="bottom" secondItem="DBN-qT-7Jn" secondAttribute="bottom" constant="2" id="63a-nB-6ok"/>
                             <constraint firstAttribute="trailing" secondItem="lQ4-mw-YZQ" secondAttribute="trailing" id="BW7-O9-6mV"/>
-                            <constraint firstAttribute="bottom" secondItem="lQ4-mw-YZQ" secondAttribute="bottom" constant="28" id="J7M-Z5-pe3"/>
+                            <constraint firstItem="DBN-qT-7Jn" firstAttribute="top" secondItem="lQ4-mw-YZQ" secondAttribute="bottom" constant="4" id="U01-a3-PCx"/>
                             <constraint firstAttribute="trailing" secondItem="E6r-mJ-eMc" secondAttribute="trailing" id="ZUR-F8-7yu"/>
-                            <constraint firstItem="DBN-qT-7Jn" firstAttribute="top" secondItem="E6r-mJ-eMc" secondAttribute="bottom" constant="19" id="ZnO-R9-CzG"/>
-                            <constraint firstItem="lQ4-mw-YZQ" firstAttribute="top" secondItem="k9O-9F-p1Y" secondAttribute="top" constant="31" id="jQD-ZY-tky"/>
                             <constraint firstItem="lQ4-mw-YZQ" firstAttribute="leading" secondItem="k9O-9F-p1Y" secondAttribute="leading" constant="11" id="jgk-vW-Xfb"/>
-                            <constraint firstAttribute="trailing" secondItem="DBN-qT-7Jn" secondAttribute="trailing" constant="113" id="loJ-YA-HKa"/>
+                            <constraint firstAttribute="trailing" secondItem="DBN-qT-7Jn" secondAttribute="trailing" constant="62" id="loJ-YA-HKa"/>
                             <constraint firstItem="E6r-mJ-eMc" firstAttribute="top" secondItem="k9O-9F-p1Y" secondAttribute="top" constant="7" id="pCs-Ln-TNz"/>
                             <constraint firstItem="DBN-qT-7Jn" firstAttribute="leading" secondItem="k9O-9F-p1Y" secondAttribute="leading" constant="12" id="piU-Lt-oEL"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="p3v-iG-v86" firstAttribute="top" secondItem="nZT-Pd-7dG" secondAttribute="top" constant="24" id="11H-eD-36L"/>
+                    <constraint firstItem="p3v-iG-v86" firstAttribute="top" secondItem="nZT-Pd-7dG" secondAttribute="top" constant="11.5" id="11H-eD-36L"/>
                     <constraint firstItem="k9O-9F-p1Y" firstAttribute="top" secondItem="nZT-Pd-7dG" secondAttribute="top" constant="8" id="CEg-Br-x01"/>
                     <constraint firstItem="k9O-9F-p1Y" firstAttribute="leading" secondItem="p3v-iG-v86" secondAttribute="trailing" constant="8" id="RfR-va-41C"/>
                     <constraint firstAttribute="bottom" secondItem="k9O-9F-p1Y" secondAttribute="bottom" constant="8" id="WHn-Hq-Jmh"/>

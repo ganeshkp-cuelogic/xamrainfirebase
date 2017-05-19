@@ -44,12 +44,15 @@ namespace FirebaseXamarin.iOS
 			NavigationController.NavigationBar.TintColor = UIColor.Black;
 			Title = roomMeataData.displayName;
 
+			bottomConstraint.Constant = 0;
+			heightConstraintSendView.Constant = 47;
+			View.LayoutIfNeeded();
 			SetupKeyboardObserver();
 
 			tblViewChats.RegisterNibForCellReuse(UINib.FromName("LeftChatMessageCell", NSBundle.MainBundle), LeftChatMessageCell.Key);
 			tblViewChats.RegisterNibForCellReuse(UINib.FromName("RightChatMessageCell", NSBundle.MainBundle), RightChatMessageCell.Key);
 			tblViewChats.RowHeight = UITableView.AutomaticDimension;
-			tblViewChats.EstimatedRowHeight = new nfloat(15.0);
+			tblViewChats.EstimatedRowHeight = new nfloat(100.0);
 
 			btnSend.TouchUpInside += (sender, e) =>
 			{
@@ -135,7 +138,6 @@ namespace FirebaseXamarin.iOS
 		#region Observe Keyboard
 		void SetupKeyboardObserver()
 		{
-			bottomConstraint.Constant = 0;
 			// listening
 			notification = UIKeyboard.Notifications.ObserveWillShow((sender, args) =>
 			{
@@ -147,7 +149,13 @@ namespace FirebaseXamarin.iOS
 				Console.WriteLine("AnimationDuration", args.AnimationDuration);
 				Console.WriteLine("AnimationCurve", args.AnimationCurve);
 
-				bottomConstraint.Constant = args.FrameEnd.Size.Height;
+				UIView.Animate(args.AnimationDuration, () =>
+				{
+					bottomConstraint.Constant = args.FrameEnd.Size.Height;
+				}, () =>
+				{
+
+				});
 			});
 
 			notification = UIKeyboard.Notifications.ObserveWillHide((sender, args) =>
@@ -160,7 +168,13 @@ namespace FirebaseXamarin.iOS
 				Console.WriteLine("AnimationDuration", args.AnimationDuration);
 				Console.WriteLine("AnimationCurve", args.AnimationCurve);
 
-				bottomConstraint.Constant = 0;
+				UIView.Animate(args.AnimationDuration, () =>
+				{
+					bottomConstraint.Constant = 0;
+				}, () =>
+				{
+
+				});
 			});
 		}
 

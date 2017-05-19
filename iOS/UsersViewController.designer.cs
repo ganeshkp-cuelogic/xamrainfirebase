@@ -1,29 +1,35 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Visual Studio to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
 using Foundation;
-using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace FirebaseXamarin.iOS
 {
-    [Register ("UsersViewController")]
-    partial class UsersViewController
-    {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView tblViewUsers { get; set; }
+	[Register ("UsersViewController")]
+	partial class UsersViewController
+	{
+		[Outlet]
+		UIKit.UIBarButtonItem btnNewGroup { get; set; }
 
-        void ReleaseDesignerOutlets ()
-        {
-            if (tblViewUsers != null) {
-                tblViewUsers.Dispose ();
-                tblViewUsers = null;
-            }
-        }
-    }
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIKit.UITableView tblViewUsers { get; set; }
+		
+		void ReleaseDesignerOutlets ()
+		{
+			if (tblViewUsers != null) {
+				tblViewUsers.Dispose ();
+				tblViewUsers = null;
+			}
+
+			if (btnNewGroup != null) {
+				btnNewGroup.Dispose ();
+				btnNewGroup = null;
+			}
+		}
+	}
 }

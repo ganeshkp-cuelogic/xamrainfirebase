@@ -14,6 +14,12 @@ namespace FirebaseXamarin
 
 		private readonly DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
 
+		public void updateUserInfo(User user)
+		{
+			DatabaseReference userNode = rootNode.GetChild("users").GetChild(user.uid);
+			userNode.UpdateChildValues(user.ToDictionary());
+		}
+
 		public void getAllUser(Action<List<User>> callback)
 		{
 			DatabaseReference userNode = rootNode.GetChild(FirebaseConstants.FB_USERS);
@@ -41,8 +47,36 @@ namespace FirebaseXamarin
 
 		public void createGroup(RoomsMetaData roomMetatData)
 		{
+			string roomIDKey;
 			DatabaseReference roomNode = rootNode.GetChild(FirebaseConstants.FB_ROOMS);
-			roomNode.GetChildByAutoId().UpdateChildValues(roomMetatData.toDictionary());
+			if (String.IsNullOrEmpty(roomMetatData.roomId))
+			{
+				roomIDKey = roomNode.GetChildByAutoId().Key;
+				roomMetatData.roomId = roomIDKey;
+				updateTheRoomInfo(roomMetatData);
+			}
+			else
+			{
+				roomIDKey = roomMetatData.roomId;
+			}
+			roomNode.GetChild(roomIDKey).UpdateChildValues(roomMetatData.toDictionary());
+		}
+
+		private void updateTheRoomInfo(RoomsMetaData roomMeataData)
+		{
+			/**
+			 * 1. Add the new Room ID in sender user info
+			 * 2. Add the new Room ID in receiver user info 
+			 */
+			foreach (string userID in roomMeataData.users)
+			{
+				getUserInfo(userID, (User userInfo) =>
+				{
+					User roomUserInfo = userInfo;
+					roomUserInfo.arrRoomId.Add(roomMeataData.roomId);
+					updateUserInfo(roomUserInfo);
+				});
+			}
 		}
 
 		public void fetchAllRooms(string currentUserId, Action<List<RoomsMetaData>> roomsCallback)

@@ -152,6 +152,8 @@
     <ImageAsset Include="Resources\Assets.xcassets\users.imageset\users.png" />
     <ImageAsset Include="Resources\Assets.xcassets\send-button.imageset\Contents.json" />
     <ImageAsset Include="Resources\Assets.xcassets\send-button.imageset\send-button %281%29.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\edit.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\edit.imageset\edit.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

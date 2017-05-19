@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Interfaces\IFirebaseManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Models\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\Utils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Core\" />
