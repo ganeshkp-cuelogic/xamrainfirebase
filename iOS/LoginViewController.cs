@@ -24,15 +24,13 @@ namespace FirebaseXamarin.iOS
             base.ViewDidLoad();
             confugureUI();
 
-            //TODO - Remove this on Prod
-            User user = User.getMyDummyUser();
-
-            pushUserInfoToFirebase(user);
+            ////TODO - Remove this on Prod
+            //User user = User.getMyDummyUser();
+            //pushUserInfoToFirebase(user);
         }
 
         private void confugureUI()
         {
-
             SignInBtn = new SignInButton();
             SignInBtn.Frame = new CGRect(20, 100, 150, 44);
             SignInBtn.Center = View.Center;
@@ -118,9 +116,20 @@ namespace FirebaseXamarin.iOS
         private void pushUserInfoToFirebase(User userInfoModel)
         {
             //Add the user in firebase database
-            DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
-            DatabaseReference userNode = rootNode.GetChild("users").GetChild(userInfoModel.uid);
-            userNode.UpdateChildValues(userInfoModel.ToDictionary());
+            FirebaseManager.sharedManager.getUserInfo(userInfoModel.uid, (User userInfo) =>
+            {
+                if (userInfo != null)
+                {
+
+                }
+                else
+                {
+                    DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
+                    DatabaseReference userNode = rootNode.GetChild("users").GetChild(userInfoModel.uid);
+                    userNode.UpdateChildValues(userInfoModel.ToDictionary());
+                }
+            });
+
         }
 
 

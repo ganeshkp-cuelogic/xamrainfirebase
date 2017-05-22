@@ -9,52 +9,60 @@ using FirebaseXamarin.iOS.Delegates;
 
 namespace FirebaseXamarin.iOS
 {
-	public partial class UsersViewController : BaseViewController
-	{
-		UsersListDatasource userListDataSource;
-		bool isGroupClicked;
+    public partial class UsersViewController : BaseViewController
+    {
+        UsersListDatasource userListDataSource;
+        bool isGroupClicked = false;
 
-		public UsersViewController(IntPtr handle) : base(handle)
-		{
+        public UsersViewController(IntPtr handle) : base(handle)
+        {
 
-		}
+        }
 
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
-			configureUI();
-			fetchUsersAndDisplay();
-		}
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            configureUI();
+        }
 
-		private void configureUI()
-		{
-			NavigationController.NavigationBarHidden = false;
-			btnNewGroup.Clicked += (sender, e) =>
-			{
-				isGroupClicked = true;
-			};
+        public override void ViewWillAppear(bool animated)
+        {
+            fetchUsersAndDisplay();
+        }
 
-			tblViewUsers.TableFooterView = new UIView();
-		}
+        private void configureUI()
+        {
+            NavigationController.NavigationBarHidden = false;
+            btnNewGroup.Clicked += (sender, e) =>
+            {
+                isGroupClicked = true;
+            };
 
-		private void fetchUsersAndDisplay()
-		{
-			showLoading("fetching users ...");
-			FirebaseManager.sharedManager.getAllUser((List<User> users) =>
-			{
-				hideLoading();
+            tblViewUsers.TableFooterView = new UIView();
+        }
 
-				InvokeOnMainThread(() =>
-				{
-					if (users.Count > 0)
-					{
-						userListDataSource = new UsersListDatasource(users);
-						tblViewUsers.DataSource = userListDataSource;
-						tblViewUsers.Delegate = new UserListDelegate(this, users);
-						tblViewUsers.ReloadData();
-					}
-				});
-			});
-		}
-	}
+        private void fetchUsersAndDisplay()
+        {
+            showLoading("fetching users ...");
+            FirebaseManager.sharedManager.getAllUser((List<User> users) =>
+            {
+                hideLoading();
+
+                InvokeOnMainThread(() =>
+                {
+                    if (users != null && users.Count > 0)
+                    {
+                        userListDataSource = new UsersListDatasource(users);
+                        tblViewUsers.DataSource = userListDataSource;
+                        tblViewUsers.Delegate = new UserListDelegate(this, users);
+                        tblViewUsers.ReloadData();
+                    }
+                    else
+                    {
+                        ShowAlert("Message", "No users found", "Ok");
+                    }
+                });
+            });
+        }
+    }
 }
