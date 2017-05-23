@@ -29,6 +29,8 @@ namespace FirebaseXamarin.iOS.Cells
 
 			imgViewProfile.Layer.CornerRadius = imgViewProfile.Frame.Size.Width / 2;
 			imgViewProfile.ClipsToBounds = true;
+			imgViewProfile.Layer.BorderWidth = 1;
+			imgViewProfile.ContentMode = UIViewContentMode.ScaleAspectFit;
 		}
 
 		public void populateData(RoomsMetaData roomMetaData)
