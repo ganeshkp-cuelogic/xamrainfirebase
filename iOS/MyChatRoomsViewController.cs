@@ -7,69 +7,60 @@ using Google.SignIn;
 
 namespace FirebaseXamarin.iOS
 {
-    public partial class MyChatRoomsViewController : BaseViewController
-    {
+	public partial class MyChatRoomsViewController : BaseViewController
+	{
 
-        MyChatRoomsDatasource chatRoomsDataSource;
+		MyChatRoomsDatasource chatRoomsDataSource;
 
-        public MyChatRoomsViewController(IntPtr handle) : base(handle)
-        {
+		public MyChatRoomsViewController(IntPtr handle) : base(handle)
+		{
 
-        }
+		}
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
 
-            configureUI();
-        }
+			configureUI();
+		}
 
-        public override void ViewWillAppear(bool animated)
-        {
-            fetchAllRooms();
-        }
+		public override void ViewWillAppear(bool animated)
+		{
+			fetchAllRooms();
+		}
 
-        private void configureUI()
-        {
-            tblViewChatRooms.RegisterNibForCellReuse(UINib.FromName("ChatRoomsCell", NSBundle.MainBundle), ChatRoomsCell.Key);
-            tblViewChatRooms.TableFooterView = new UIView();
-            TabBarController.NavigationController.NavigationBarHidden = true;
-            NavigationController.NavigationBarHidden = false;
-            NavigationController.Title = "Chats";
+		private void configureUI()
+		{
+			tblViewChatRooms.RegisterNibForCellReuse(UINib.FromName("ChatRoomsCell", NSBundle.MainBundle), ChatRoomsCell.Key);
+			tblViewChatRooms.TableFooterView = new UIView();
+			TabBarController.NavigationController.NavigationBarHidden = true;
+			NavigationController.NavigationBarHidden = false;
+			NavigationController.Title = "Chats";
 
-            //Logout Button
-            NavigationController.NavigationBarHidden = false;
-            UIBarButtonItem rightBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("logout"), UIBarButtonItemStyle.Plain, (sender, e) =>
-            {
-                SignIn.SharedInstance.SignOutUser();
-                AppDelegate.applicationDelegate().moveToLoginScreen();
-                DBManager.sharedManager.deleteUserInfo();
-            });
-            NavigationItem.SetRightBarButtonItem(rightBarButtonItem, true);
-            NavigationController.NavigationBar.TintColor = UIColor.Black;
-        }
+			NavigationController.NavigationBar.TintColor = UIColor.Black;
+		}
 
-        private void fetchAllRooms()
-        {
-            showLoading("Fetching chats ...");
-            FirebaseManager.sharedManager.fetchAllMyRooms(DBManager.sharedManager.getLoggedInUserInfo().uid, (rooms) =>
-            {
-                InvokeOnMainThread(() =>
-                {
-                    hideLoading();
-                    if (rooms != null && rooms.Count > 0)
-                    {
-                        chatRoomsDataSource = new MyChatRoomsDatasource(rooms);
-                        tblViewChatRooms.Source = chatRoomsDataSource;
-                        tblViewChatRooms.Delegate = new MyChatRoomsDelegate(NavigationController, rooms);
-                        tblViewChatRooms.ReloadData();
-                    }
-                    else
-                    {
-                        ShowAlert("Message", "No chats found", "Ok");
-                    }
-                });
-            });
-        }
-    }
+		private void fetchAllRooms()
+		{
+			showLoading("Fetching chats ...");
+			FirebaseManager.sharedManager.fetchAllMyRooms(DBManager.sharedManager.getLoggedInUserInfo().uid, (rooms) =>
+			{
+				InvokeOnMainThread(() =>
+				{
+					hideLoading();
+					if (rooms != null && rooms.Count > 0)
+					{
+						chatRoomsDataSource = new MyChatRoomsDatasource(rooms);
+						tblViewChatRooms.Source = chatRoomsDataSource;
+						tblViewChatRooms.Delegate = new MyChatRoomsDelegate(NavigationController, rooms);
+						tblViewChatRooms.ReloadData();
+					}
+					else
+					{
+						ShowAlert("Message", "No chats found", "Ok");
+					}
+				});
+			});
+		}
+	}
 }

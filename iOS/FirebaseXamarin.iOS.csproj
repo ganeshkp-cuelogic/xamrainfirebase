@@ -158,6 +158,8 @@
     <ImageAsset Include="Resources\Assets.xcassets\newgroup.imageset\newgroup%402x.png" />
     <ImageAsset Include="Resources\Assets.xcassets\checked.imageset\Contents.json" />
     <ImageAsset Include="Resources\Assets.xcassets\checked.imageset\checked%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\user.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\user.imageset\user.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -238,6 +240,10 @@
       <DependentUpon>GPTextView.cs</DependentUpon>
     </Compile>
     <Compile Include="Contracts\UsersListUserActionsProtocol.cs" />
+    <Compile Include="SettingsViewController.cs" />
+    <Compile Include="SettingsViewController.designer.cs">
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="firebaseiosauth">
