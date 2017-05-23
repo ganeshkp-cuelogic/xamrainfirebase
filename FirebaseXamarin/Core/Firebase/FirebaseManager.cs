@@ -60,26 +60,38 @@ namespace FirebaseXamarin
             string roomIDKey;
             DatabaseReference roomNode = rootNode.GetChild(FirebaseConstants.FB_ROOMS);
 
-            /**
-             * Check if a room exists or not between us
-             * 
-             */
-            AlreadyRoomExists(roomMetatData, (string roomId) =>
+            if (roomMetatData.type == Constants.ROOM_TYPE_GROUP)
             {
-                roomMetatData.roomId = roomId;
-                if (String.IsNullOrEmpty(roomMetatData.roomId))
-                {
-                    roomIDKey = roomNode.GetChildByAutoId().Key;
-                    roomMetatData.roomId = roomIDKey;
-                    updateTheRoomInfo(roomMetatData);
-                }
-                else
-                {
-                    roomIDKey = roomMetatData.roomId;
-                }
+                roomIDKey = roomNode.GetChildByAutoId().Key;
+                roomMetatData.roomId = roomIDKey;
+                updateTheRoomInfo(roomMetatData);
                 roomNode.GetChild(roomIDKey).UpdateChildValues(roomMetatData.toDictionary());
                 roomIdCallBack(roomIDKey);
-            });
+            }
+            else
+            {
+                /**
+                 * Check if a room exists or not between us
+                 * 
+                 */
+                AlreadyRoomExists(roomMetatData, (string roomId) =>
+                {
+                    roomMetatData.roomId = roomId;
+                    if (String.IsNullOrEmpty(roomMetatData.roomId))
+                    {
+                        roomIDKey = roomNode.GetChildByAutoId().Key;
+                        roomMetatData.roomId = roomIDKey;
+
+                        updateTheRoomInfo(roomMetatData);
+                    }
+                    else
+                    {
+                        roomIDKey = roomMetatData.roomId;
+                    }
+                    roomNode.GetChild(roomIDKey).UpdateChildValues(roomMetatData.toDictionary());
+                    roomIdCallBack(roomIDKey);
+                });
+            }
         }
 
         private void AlreadyRoomExists(RoomsMetaData roomMetaData, Action<string> roomIdCallback)
@@ -181,14 +193,14 @@ namespace FirebaseXamarin
                     if (totalRoomsIDs.Count > 0)
                     {
                         counter = 0;
-                        foreach (string roomID in userInfo.arrIndRoomId)
+                        foreach (string roomID in totalRoomsIDs)
                         {
                             getRoomInfo(roomID, (RoomsMetaData roomInfo) =>
                             {
-                                roomMetaDataList.Add(roomInfo);
-                                counter = counter + 1;
-                                if (counter == totalRoomsIDs.Count)
+                                if (roomInfo != null)
                                 {
+                                    roomMetaDataList.Add(roomInfo);
+                                    counter = counter + 1;
                                     roomsCallback(roomMetaDataList);
                                 }
                             });
@@ -212,7 +224,7 @@ namespace FirebaseXamarin
             DatabaseReference roomDetailsNode = roomNode.GetChild(roomId);
             roomDetailsNode.ObserveEvent(DataEventType.Value, (snapshot) =>
                 {
-                    if (snapshot != null)
+                    if (snapshot != null && snapshot.ChildrenCount > 0)
                     {
                         var dictionaryData = snapshot.GetValue<NSDictionary>();
                         RoomsMetaData room = RoomsMetaData.fromDictionary(dictionaryData);

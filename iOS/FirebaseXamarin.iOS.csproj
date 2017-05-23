@@ -154,6 +154,10 @@
     <ImageAsset Include="Resources\Assets.xcassets\send-button.imageset\send-button %281%29.png" />
     <ImageAsset Include="Resources\Assets.xcassets\edit.imageset\Contents.json" />
     <ImageAsset Include="Resources\Assets.xcassets\edit.imageset\edit.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\newgroup.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\newgroup.imageset\newgroup%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\checked.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\checked.imageset\checked%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -164,6 +168,7 @@
     <Folder Include="Datasources\" />
     <Folder Include="Delegates\" />
     <Folder Include="Cells\" />
+    <Folder Include="Contracts\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -232,6 +237,7 @@
     <Compile Include="GPTextView.designer.cs">
       <DependentUpon>GPTextView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contracts\UsersListUserActionsProtocol.cs" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="firebaseiosauth">

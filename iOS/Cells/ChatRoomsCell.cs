@@ -3,6 +3,7 @@
 using Foundation;
 using UIKit;
 using FirebaseXamarin.Core.Utils;
+using SDWebImage;
 
 namespace FirebaseXamarin.iOS.Cells
 {
@@ -43,6 +44,10 @@ namespace FirebaseXamarin.iOS.Cells
                     FirebaseManager.sharedManager.getUserInfo(otherUserId, (User userInfo) =>
                                     {
                                         lblChatRoomName.Text = userInfo.name;
+                                        imgViewProfile.SetImage(
+                                                url: new NSUrl(userInfo.profilePic),
+                                                placeholder: UIImage.FromBundle("user.png")
+                                            );
                                     });
                 }
             }

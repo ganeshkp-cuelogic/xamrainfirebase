@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 namespace FirebaseXamarin
 {
     [Table("user")]
-    public class User
+    public class User : ICloneable
     {
         public User()
         {
@@ -29,6 +29,7 @@ namespace FirebaseXamarin
 
         [Ignore]
         public List<string> arrGroupRoomId { get; set; }
+        public bool isSelected { get; set; } //TODO - Find an alternative - this property probably is not required.
 
         public NSDictionary ToDictionary()
         {
@@ -116,6 +117,11 @@ namespace FirebaseXamarin
             dummyUser.profilePic = "https://lh4.googleusercontent.com/-uQxfaqJEYm8/AAAAAAAAAAI/AAAAAAAAAAs/cnWomrCN2LE/s96-c/photo.jpg";
 
             return dummyUser;
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
 
     }

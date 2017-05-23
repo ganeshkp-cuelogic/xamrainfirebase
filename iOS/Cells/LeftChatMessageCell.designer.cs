@@ -1,53 +1,54 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Xamarin Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
 
 namespace FirebaseXamarin.iOS
 {
-	[Register ("LeftChatMessageCell")]
-	partial class LeftChatMessageCell
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIKit.UIImageView imgViewProfile { get; set; }
+    [Register ("LeftChatMessageCell")]
+    partial class LeftChatMessageCell
+    {
+        [Outlet]
+        UIKit.UILabel lblUserName { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIKit.UILabel lblDateTime { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView imgViewProfile { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIKit.UILabel lblMessage { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblDateTime { get; set; }
 
-		[Outlet]
-		UIKit.UILabel lblUserName { get; set; }
-		
-		void ReleaseDesignerOutlets ()
-		{
-			if (imgViewProfile != null) {
-				imgViewProfile.Dispose ();
-				imgViewProfile = null;
-			}
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblMessage { get; set; }
 
-			if (lblDateTime != null) {
-				lblDateTime.Dispose ();
-				lblDateTime = null;
-			}
+        void ReleaseDesignerOutlets ()
+        {
+            if (imgViewProfile != null) {
+                imgViewProfile.Dispose ();
+                imgViewProfile = null;
+            }
 
-			if (lblMessage != null) {
-				lblMessage.Dispose ();
-				lblMessage = null;
-			}
+            if (lblDateTime != null) {
+                lblDateTime.Dispose ();
+                lblDateTime = null;
+            }
 
-			if (lblUserName != null) {
-				lblUserName.Dispose ();
-				lblUserName = null;
-			}
-		}
-	}
+            if (lblMessage != null) {
+                lblMessage.Dispose ();
+                lblMessage = null;
+            }
+
+            if (lblUserName != null) {
+                lblUserName.Dispose ();
+                lblUserName = null;
+            }
+        }
+    }
 }

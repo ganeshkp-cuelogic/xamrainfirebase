@@ -10,9 +10,11 @@ namespace FirebaseXamarin.iOS
     {
 
         List<User> users;
+        bool showCheckBoxes;
 
         public UsersListDatasource()
         {
+
         }
 
         public UsersListDatasource(List<User> users)
@@ -29,14 +31,26 @@ namespace FirebaseXamarin.iOS
             UILabel labelName = (UILabel)cell.ContentView.ViewWithTag(100);
             labelName.Text = user.name;
 
-			UIImageView imageViewUsers = (UIImageView)cell.ContentView.ViewWithTag(200);
-			imageViewUsers.Layer.CornerRadius = imageViewUsers.Frame.Size.Width / 2;
-			imageViewUsers.ClipsToBounds = true;
-			// Use the SetImage extension method to load the web image:
-			imageViewUsers.SetImage(
-				url: new NSUrl(user.profilePic),
-				placeholder: UIImage.FromBundle("user.png")
-			);
+            UILabel labelEmailId = (UILabel)cell.ContentView.ViewWithTag(300);
+            labelEmailId.Text = user.emailid;
+
+            UIImageView imageViewUsers = (UIImageView)cell.ContentView.ViewWithTag(200);
+            imageViewUsers.Layer.CornerRadius = imageViewUsers.Frame.Size.Width / 2;
+            imageViewUsers.ClipsToBounds = true;
+            // Use the SetImage extension method to load the web image:
+            imageViewUsers.SetImage(
+                url: new NSUrl(user.profilePic),
+                placeholder: UIImage.FromBundle("user.png")
+            );
+
+            if (user.isSelected)
+            {
+                cell.Accessory = UITableViewCellAccessory.Checkmark;
+            }
+            else
+            {
+                cell.Accessory = UITableViewCellAccessory.None;
+            }
 
             return cell;
         }
@@ -46,5 +60,14 @@ namespace FirebaseXamarin.iOS
             return users.Count;
         }
 
+        public void onClickOfNewGroup()
+        {
+            showCheckBoxes = true;
+        }
+
+        public void onClickOfCancelNewGroup()
+        {
+            showCheckBoxes = false;
+        }
     }
 }
