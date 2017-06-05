@@ -202,7 +202,13 @@ namespace FirebaseXamarin.iOS
 				else
 				{
 					//ShowMessage("Success!", "Connected to FCM", fromViewController);
-					Console.WriteLine($"Token: {InstanceId.SharedInstance.Token}");
+					var token = InstanceId.SharedInstance.Token;
+					Console.WriteLine($"Token: {token}");
+					if (!String.IsNullOrEmpty(token))
+					{
+						NSUserDefaults.StandardUserDefaults.SetString(token, FirebaseConstants.FB_TOKEN);
+						NSUserDefaults.StandardUserDefaults.Synchronize();
+					}
 				}
 			});
 		}
@@ -217,7 +223,11 @@ namespace FirebaseXamarin.iOS
 
 			Console.WriteLine($"Token Refreshed: {InstanceId.SharedInstance.Token}");
 			ConnectToFCM(Window.RootViewController);
-
+			var token = InstanceId.SharedInstance.Token;
+			if (!String.IsNullOrEmpty(token))
+			{
+				NSUserDefaults.StandardUserDefaults.SetString(token, FirebaseConstants.FB_TOKEN);
+			}
 			// TODO: If necessary send token to application server.
 		}
 

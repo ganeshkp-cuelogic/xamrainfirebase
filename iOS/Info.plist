@@ -36,21 +36,6 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.cuelogic.firebasexamarin</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.332676424210-si6pkvudt7j2si06cdl084mmsk198vbn</string>
-			</array>
-		</dict>
-	</array>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>UISupportedInterfaceOrientations</key>
@@ -61,5 +46,20 @@
 	<string>CueConnect</string>
 	<key>Custom Property</key>
 	<false/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.cuelogic.cueconnect</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.332676424210-oe6q1ig8jm65lpg38b2hda435bt3ulk9</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

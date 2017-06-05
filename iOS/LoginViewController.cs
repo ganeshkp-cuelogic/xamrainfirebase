@@ -9,146 +9,150 @@ using System.Collections.Generic;
 
 namespace FirebaseXamarin.iOS
 {
-    public partial class LoginViewController : BaseViewController, ISignInDelegate, ISignInUIDelegate
-    {
+	public partial class LoginViewController : BaseViewController, ISignInDelegate, ISignInUIDelegate
+	{
 
-        public SignInButton SignInBtn { get; private set; }
+		public SignInButton SignInBtn { get; private set; }
 
-        public LoginViewController(IntPtr handle) : base(handle)
-        {
+		public LoginViewController(IntPtr handle) : base(handle)
+		{
 
-        }
+		}
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-            confugureUI();
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+			confugureUI();
 
-            ////TODO - Remove this on Prod
-            //User user = User.getMyDummyUser();
-            //pushUserInfoToFirebase(user);
-        }
+			////TODO - Remove this on Prod
+			//User user = User.getMyDummyUser();
+			//pushUserInfoToFirebase(user);
+		}
 
-        private void confugureUI()
-        {
-            SignInBtn = new SignInButton();
-            SignInBtn.Frame = new CGRect(20, 100, 150, 44);
-            SignInBtn.Center = View.Center;
-            View.AddSubview(SignInBtn);
+		private void confugureUI()
+		{
+			SignInBtn = new SignInButton();
+			SignInBtn.Frame = new CGRect(20, 100, 150, 44);
+			SignInBtn.Center = View.Center;
+			View.AddSubview(SignInBtn);
 
-            // Assign the SignIn Delegates to receive callbacks
-            SignIn.SharedInstance.UIDelegate = this;
-            SignIn.SharedInstance.Delegate = this;
+			// Assign the SignIn Delegates to receive callbacks
+			SignIn.SharedInstance.UIDelegate = this;
+			SignIn.SharedInstance.Delegate = this;
 
-        }
+		}
 
-        public void DidSignIn(SignIn signIn, GoogleUser user, NSError error)
-        {
-            if (user != null && error == null)
-            {
-                string emailID = user.Profile.Email;
-                if (emailID.EndsWith("cuelogic.co.in") || emailID.EndsWith("cuelogic.co.in"))
-                {
-                    // Do your magic to handle authentication result
-                }
-                else
-                {
-                    ShowAlert("Message", "Please login using Cuelogic email id", "Ok");
-                    return;
-                }
+		public void DidSignIn(SignIn signIn, GoogleUser user, NSError error)
+		{
+			if (user != null && error == null)
+			{
+				string emailID = user.Profile.Email;
+				if (emailID.EndsWith("cuelogic.co.in") || emailID.EndsWith("cuelogic.co.in"))
+				{
+					// Do your magic to handle authentication result
+				}
+				else
+				{
+					ShowAlert("Message", "Please login using Cuelogic email id", "Ok");
+					return;
+				}
 
-                // Disable the SignInButton
-                GPLoadingIndicator.showLoading(AppDelegate.applicationDelegate().Window.Bounds, "Signing in ...");
+				// Disable the SignInButton
+				GPLoadingIndicator.showLoading(AppDelegate.applicationDelegate().Window.Bounds, "Signing in ...");
 
-                //Hit the Auth API
-                // Get Google ID token and Google access token and exchange them for a Firebase credential
-                var authentication = user.Authentication;
-                var credential = GoogleAuthProvider.GetCredential(authentication.IdToken, authentication.AccessToken);
+				//Hit the Auth API
+				// Get Google ID token and Google access token and exchange them for a Firebase credential
+				var authentication = user.Authentication;
+				var credential = GoogleAuthProvider.GetCredential(authentication.IdToken, authentication.AccessToken);
 
-                // Authenticate with Firebase using the credential
-                // Visit https://firebase.google.com/docs/auth/ios/errors for more information
-                Auth.DefaultInstance.SignIn(credential, (userInfo, errorInfo) =>
-                {
-                    GPLoadingIndicator.Hide();
+				// Authenticate with Firebase using the credential
+				// Visit https://firebase.google.com/docs/auth/ios/errors for more information
+				Auth.DefaultInstance.SignIn(credential, (userInfo, errorInfo) =>
+				{
+					GPLoadingIndicator.Hide();
 
-                    if (errorInfo != null)
-                    {
-                        AuthErrorCode errorCode;
-                        if (IntPtr.Size == 8) // 64 bits devices
-                            errorCode = (AuthErrorCode)((long)errorInfo.Code);
-                        else // 32 bits devices
-                            errorCode = (AuthErrorCode)((int)errorInfo.Code);
+					if (errorInfo != null)
+					{
+						AuthErrorCode errorCode;
+						if (IntPtr.Size == 8) // 64 bits devices
+							errorCode = (AuthErrorCode)((long)errorInfo.Code);
+						else // 32 bits devices
+							errorCode = (AuthErrorCode)((int)errorInfo.Code);
 
-                        // Posible error codes that SignIn method with credentials could throw
-                        switch (errorCode)
-                        {
-                            case AuthErrorCode.InvalidCredential:
-                            case AuthErrorCode.InvalidEmail:
-                            case AuthErrorCode.OperationNotAllowed:
-                            case AuthErrorCode.EmailAlreadyInUse:
-                            case AuthErrorCode.UserDisabled:
-                            case AuthErrorCode.WrongPassword:
-                            default:
-                                // Print error
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        // ShowAlert("Message", "Login Successfull", "Ok");
-                        AppDelegate.applicationDelegate().moveToUsersScreen();
-                        User userModel = new User();
-                        userModel.emailid = userInfo.Email;
-                        userModel.uid = userInfo.Uid;
-                        userModel.name = userInfo.DisplayName;
-                        userModel.profilePic = userInfo.PhotoUrl.AbsoluteString;
-                        userModel.firebaseToken = NSUserDefaults.StandardUserDefaults.StringForKey(FirebaseConstants.FB_TOKEN);
+						// Posible error codes that SignIn method with credentials could throw
+						switch (errorCode)
+						{
+							case AuthErrorCode.InvalidCredential:
+							case AuthErrorCode.InvalidEmail:
+							case AuthErrorCode.OperationNotAllowed:
+							case AuthErrorCode.EmailAlreadyInUse:
+							case AuthErrorCode.UserDisabled:
+							case AuthErrorCode.WrongPassword:
+							default:
+								// Print error
+								break;
+						}
+					}
+					else
+					{
+						// ShowAlert("Message", "Login Successfull", "Ok");
+						AppDelegate.applicationDelegate().moveToUsersScreen();
+						User userModel = new User();
+						userModel.emailid = userInfo.Email;
+						userModel.uid = userInfo.Uid;
+						userModel.name = userInfo.DisplayName;
+						userModel.profilePic = userInfo.PhotoUrl.AbsoluteString;
+						userModel.firebaseToken = NSUserDefaults.StandardUserDefaults.StringForKey(FirebaseConstants.FB_TOKEN);
 
-                        DBManager.sharedManager.saveUserInfo(userModel);
+						DBManager.sharedManager.saveUserInfo(userModel);
 
-                        pushUserInfoToFirebase(userModel);
-                    }
+						pushUserInfoToFirebase(userModel);
+					}
 
-                });
-            }
-        }
+				});
+			}
+		}
 
-        private void pushUserInfoToFirebase(User userInfoModel)
-        {
-            //Add the user in firebase database
-            FirebaseManager.sharedManager.getUserInfo(userInfoModel.uid, (User userInfo) =>
-            {
-                if (userInfo != null)
-                {
+		private void pushUserInfoToFirebase(User userInfoModel)
+		{
+			DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
+			DatabaseReference userNode = rootNode.GetChild("users").GetChild(userInfoModel.uid);
+			userNode.UpdateChildValues(userInfoModel.ToDictionary());
 
-                }
-                else
-                {
-                    DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
-                    DatabaseReference userNode = rootNode.GetChild("users").GetChild(userInfoModel.uid);
-                    userNode.UpdateChildValues(userInfoModel.ToDictionary());
-                }
-            });
+			////Add the user in firebase database
+			//FirebaseManager.sharedManager.getUserInfo(userInfoModel.uid, (User userInfo) =>
+			//{
+			//	if (userInfo != null)
+			//	{
 
-        }
+			//	}
+			//	else
+			//	{
+			//		DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
+			//		DatabaseReference userNode = rootNode.GetChild("users").GetChild(userInfoModel.uid);
+			//		userNode.UpdateChildValues(userInfoModel.ToDictionary());
+			//	}
+			//});
+
+		}
 
 
-        [Export("signInWillDispatch:error:")]
-        public void WillDispatch(SignIn signIn, NSError error)
-        {
+		[Export("signInWillDispatch:error:")]
+		public void WillDispatch(SignIn signIn, NSError error)
+		{
 
-        }
+		}
 
-        [Export("signIn:presentViewController:")]
-        public void PresentViewController(SignIn signIn, UIViewController viewController)
-        {
-            PresentViewController(viewController, true, null);
-        }
+		[Export("signIn:presentViewController:")]
+		public void PresentViewController(SignIn signIn, UIViewController viewController)
+		{
+			PresentViewController(viewController, true, null);
+		}
 
-        [Export("signIn:dismissViewController:")]
-        public void DismissViewController(SignIn signIn, UIViewController viewController)
-        {
-            DismissViewController(true, null);
-        }
-    }
+		[Export("signIn:dismissViewController:")]
+		public void DismissViewController(SignIn signIn, UIViewController viewController)
+		{
+			DismissViewController(true, null);
+		}
+	}
 }

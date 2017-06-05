@@ -7,6 +7,7 @@ using FirebaseXamarin.Core.Utils;
 using System.Collections.Specialized;
 using System.Linq;
 using Firebase.CloudMessaging;
+using FirebaseXamarin.Core.Network;
 
 namespace FirebaseXamarin
 {
@@ -68,7 +69,8 @@ namespace FirebaseXamarin
 				updateTheRoomInfo(roomMetatData);
 				roomNode.GetChild(roomIDKey).UpdateChildValues(roomMetatData.toDictionary());
 				roomIdCallBack(roomIDKey);
-				subscribeToTopic(roomIDKey);
+
+				subscribeToTopic(roomMetatData);
 			}
 			else
 			{
@@ -92,7 +94,7 @@ namespace FirebaseXamarin
 					}
 					roomNode.GetChild(roomIDKey).UpdateChildValues(roomMetatData.toDictionary());
 					roomIdCallBack(roomIDKey);
-					subscribeToTopic(roomIDKey);
+					subscribeToTopic(roomMetatData);
 				});
 			}
 		}
@@ -291,16 +293,31 @@ namespace FirebaseXamarin
 			roomNode.GetChildByAutoId().UpdateChildValues(message.toDictionary());
 		}
 
-		public void subscribeToTopic(string topicName)
+		public void subscribeToTopic(RoomsMetaData roomMeataData)
 		{
-			Messaging.SharedInstance.Subscribe("/topics/" + topicName);
+			Messaging.SharedInstance.Subscribe("/topics/" + roomMeataData.roomId);
+			Console.WriteLine("Subscribed to topic - /topics/" + roomMeataData.roomId);
+
+			/**
+			 * Subscribe other members of this group into this topic
+			 */
+			ChatAPI.subscribeOtherUsersToTopic(roomMeataData);
+		}
+
+		public void broadcastTopic(string topicName, Message message)
+		{
+			ChatAPI.sendMessage(message);
+		}
+
+		void SubcribeOtherGroupMembers(List<string> otherUserIds)
+		{
+
 		}
 
 		public void unSubscribeToTopic(string topicName)
 		{
 			Messaging.SharedInstance.Unsubscribe("/topics/" + topicName);
 		}
-
 	}
 }
 

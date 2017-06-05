@@ -20,6 +20,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Models\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\Utils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Network\NetworkRequestManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Network\APIResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Network\GPError.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\CCMessages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Network\ChatAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Core\" />
@@ -29,5 +34,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Core\Interfaces\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\Firebase\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\Utils\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\Network\" />
   </ItemGroup>
 </Project>
