@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>332676424210-si6pkvudt7j2si06cdl084mmsk198vbn.apps.googleusercontent.com</string>
+	<string>332676424210-oe6q1ig8jm65lpg38b2hda435bt3ulk9.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.332676424210-si6pkvudt7j2si06cdl084mmsk198vbn</string>
+	<string>com.googleusercontent.apps.332676424210-oe6q1ig8jm65lpg38b2hda435bt3ulk9</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAkpfTPlBFXfTYgrA-9tzDurnKHaUJ9cYM</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.cuelogic.firebasexamarin</string>
+	<string>com.cuelogic.cueconnect</string>
 	<key>PROJECT_ID</key>
 	<string>cuelogic-firebase-chat-app</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,8 +33,10 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:332676424210:ios:e15f3ad45467ff02</string>
+	<string>1:332676424210:ios:10cb220f0e4ed35c</string>
 	<key>DATABASE_URL</key>
 	<string>https://cuelogic-firebase-chat-app.firebaseio.com</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 </dict>
 </plist>

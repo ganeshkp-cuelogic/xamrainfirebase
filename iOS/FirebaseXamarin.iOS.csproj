@@ -79,7 +79,7 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
-    <CodesignProvision>Dev_Xamarin</CodesignProvision>
+    <CodesignProvision>dev_cueconnect</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -276,8 +276,8 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="GoogleService-Info.plist" />
     <BundleResource Include="user.png" />
+    <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
   <Import Project="..\FirebaseXamarin\FirebaseXamarin.projitems" Label="Shared" Condition="Exists('..\FirebaseXamarin\FirebaseXamarin.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
