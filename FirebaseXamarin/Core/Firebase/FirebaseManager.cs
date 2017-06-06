@@ -35,6 +35,7 @@ namespace FirebaseXamarin
 		public void getAllUser(Action<List<User>> callback)
 		{
 			DatabaseReference userNode = rootNode.GetChild(FirebaseConstants.FB_USERS);
+			userNode.KeepSynced(true);
 			userNode.ObserveEvent(DataEventType.Value, (snapshot) =>
 				{
 					// Loop over the children
@@ -94,6 +95,7 @@ namespace FirebaseXamarin
 					}
 					roomNode.GetChild(roomIDKey).UpdateChildValues(roomMetatData.toDictionary());
 					roomIdCallBack(roomIDKey);
+
 					subscribeToTopic(roomMetatData);
 				});
 			}
@@ -245,10 +247,11 @@ namespace FirebaseXamarin
 		public void getUserInfo(string userId, Action<User> userInfoCallBack)
 		{
 			DatabaseReference usersNode = rootNode.GetChild(FirebaseConstants.FB_USERS);
+			usersNode.KeepSynced(true);
 			DatabaseReference userDetailsNode = usersNode.GetChild(userId);
 			userDetailsNode.ObserveSingleEvent(DataEventType.Value, (snapshot) =>
 				{
-					if (snapshot != null)
+					if (snapshot != null && snapshot.HasChildren)
 					{
 						var dictionaryData = snapshot.GetValue<NSDictionary>();
 						User user = User.fromDictionary(dictionaryData);
@@ -304,14 +307,9 @@ namespace FirebaseXamarin
 			ChatAPI.subscribeOtherUsersToTopic(roomMeataData);
 		}
 
-		public void broadcastTopic(string topicName, Message message)
+		public void broadcastTopic(RoomsMetaData roomMeataData, Message message)
 		{
-			ChatAPI.sendMessage(message);
-		}
-
-		void SubcribeOtherGroupMembers(List<string> otherUserIds)
-		{
-
+			ChatAPI.sendMessage(roomMeataData, message);
 		}
 
 		public void unSubscribeToTopic(string topicName)

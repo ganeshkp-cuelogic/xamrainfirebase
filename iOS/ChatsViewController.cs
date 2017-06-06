@@ -4,6 +4,7 @@ using UIKit;
 using System.Collections.Generic;
 using AVFoundation;
 using FirebaseXamarin.Core.Utils;
+using System.Linq;
 
 namespace FirebaseXamarin.iOS
 {
@@ -42,7 +43,18 @@ namespace FirebaseXamarin.iOS
 		{
 			NavigationController.NavigationBarHidden = false;
 			NavigationController.NavigationBar.TintColor = UIColor.Black;
-			Title = roomMeataData.displayName;
+			if (roomMeataData.type == Constants.ROOM_TYPE_GROUP)
+			{
+				Title = roomMeataData.displayName;
+			}
+			else
+			{
+				string otherUserId = roomMeataData.users.Find(item => item != DBManager.sharedManager.getLoggedInUserInfo().uid);
+				FirebaseManager.sharedManager.getUserInfo(otherUserId, (User userInfo) =>
+				{
+					Title = userInfo.name;
+				});
+			}
 
 			bottomConstraint.Constant = 0;
 			heightConstraintSendView.Constant = 47;
@@ -118,7 +130,7 @@ namespace FirebaseXamarin.iOS
 			FirebaseManager.sharedManager.sendMessage(message);
 
 			message.message_id = Utils.getCurrentTime();
-			FirebaseManager.sharedManager.broadcastTopic(message.roomId, message);
+			FirebaseManager.sharedManager.broadcastTopic(roomMeataData, message);
 		}
 
 		private void fetchMessages()
@@ -152,12 +164,12 @@ namespace FirebaseXamarin.iOS
 			notification = UIKeyboard.Notifications.ObserveWillShow((sender, args) =>
 			{
 				/* Access strongly typed args */
-				Console.WriteLine("Notification: {0}", args.Notification);
+				//Console.WriteLine("Notification: {0}", args.Notification);
 
-				Console.WriteLine("FrameBegin", args.FrameBegin);
-				Console.WriteLine("FrameEnd", args.FrameEnd);
-				Console.WriteLine("AnimationDuration", args.AnimationDuration);
-				Console.WriteLine("AnimationCurve", args.AnimationCurve);
+				//Console.WriteLine("FrameBegin", args.FrameBegin);
+				//Console.WriteLine("FrameEnd", args.FrameEnd);
+				//Console.WriteLine("AnimationDuration", args.AnimationDuration);
+				//Console.WriteLine("AnimationCurve", args.AnimationCurve);
 
 				UIView.Animate(args.AnimationDuration, () =>
 				{
@@ -171,12 +183,12 @@ namespace FirebaseXamarin.iOS
 			notification = UIKeyboard.Notifications.ObserveWillHide((sender, args) =>
 			{
 				/* Access strongly typed args */
-				Console.WriteLine("Notification: {0}", args.Notification);
+				//Console.WriteLine("Notification: {0}", args.Notification);
 
-				Console.WriteLine("FrameBegin", args.FrameBegin);
-				Console.WriteLine("FrameEnd", args.FrameEnd);
-				Console.WriteLine("AnimationDuration", args.AnimationDuration);
-				Console.WriteLine("AnimationCurve", args.AnimationCurve);
+				//Console.WriteLine("FrameBegin", args.FrameBegin);
+				//Console.WriteLine("FrameEnd", args.FrameEnd);
+				//Console.WriteLine("AnimationDuration", args.AnimationDuration);
+				//Console.WriteLine("AnimationCurve", args.AnimationCurve);
 
 				UIView.Animate(args.AnimationDuration, () =>
 				{

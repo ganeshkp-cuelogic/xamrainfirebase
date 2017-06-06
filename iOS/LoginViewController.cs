@@ -47,15 +47,15 @@ namespace FirebaseXamarin.iOS
 			if (user != null && error == null)
 			{
 				string emailID = user.Profile.Email;
-				if (emailID.EndsWith("cuelogic.co.in") || emailID.EndsWith("cuelogic.co.in"))
-				{
-					// Do your magic to handle authentication result
-				}
-				else
-				{
-					ShowAlert("Message", "Please login using Cuelogic email id", "Ok");
-					return;
-				}
+				//if (emailID.EndsWith("cuelogic.co.in") || emailID.EndsWith("cuelogic.co.in"))
+				//{
+				//	// Do your magic to handle authentication result
+				//}
+				//else
+				//{
+				//	ShowAlert("Message", "Please login using Cuelogic email id", "Ok");
+				//	return;
+				//}
 
 				// Disable the SignInButton
 				GPLoadingIndicator.showLoading(AppDelegate.applicationDelegate().Window.Bounds, "Signing in ...");
@@ -115,27 +115,25 @@ namespace FirebaseXamarin.iOS
 
 		private void pushUserInfoToFirebase(User userInfoModel)
 		{
-			DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
-			DatabaseReference userNode = rootNode.GetChild("users").GetChild(userInfoModel.uid);
-			userNode.UpdateChildValues(userInfoModel.ToDictionary());
-
-			////Add the user in firebase database
-			//FirebaseManager.sharedManager.getUserInfo(userInfoModel.uid, (User userInfo) =>
-			//{
-			//	if (userInfo != null)
-			//	{
-
-			//	}
-			//	else
-			//	{
-			//		DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
-			//		DatabaseReference userNode = rootNode.GetChild("users").GetChild(userInfoModel.uid);
-			//		userNode.UpdateChildValues(userInfoModel.ToDictionary());
-			//	}
-			//});
+			//Add the user in firebase database
+			FirebaseManager.sharedManager.getUserInfo(userInfoModel.uid, (User userInfo) =>
+			{
+				User userToSend = null;
+				if (userInfo != null)
+				{
+					userToSend = userInfo;
+					userToSend.firebaseToken = NSUserDefaults.StandardUserDefaults.StringForKey(FirebaseConstants.FB_TOKEN);
+				}
+				else
+				{
+					userToSend = userInfoModel;
+				}
+				DatabaseReference rootNode = Database.DefaultInstance.GetRootReference();
+				DatabaseReference userNode = rootNode.GetChild("users").GetChild(userInfoModel.uid);
+				userNode.UpdateChildValues(userToSend.ToDictionary());
+			});
 
 		}
-
 
 		[Export("signInWillDispatch:error:")]
 		public void WillDispatch(SignIn signIn, NSError error)

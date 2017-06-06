@@ -4,13 +4,14 @@ using UIKit;
 using FirebaseXamarin.iOS.Datasources;
 using FirebaseXamarin.iOS.Cells;
 using Google.SignIn;
+using System.Collections.Generic;
 
 namespace FirebaseXamarin.iOS
 {
 	public partial class MyChatRoomsViewController : BaseViewController
 	{
-
 		MyChatRoomsDatasource chatRoomsDataSource;
+		UIRefreshControl refreshControl = new UIRefreshControl();
 
 		public MyChatRoomsViewController(IntPtr handle) : base(handle)
 		{
@@ -22,11 +23,13 @@ namespace FirebaseXamarin.iOS
 			base.ViewDidLoad();
 
 			configureUI();
+			showLoading("Fetching chats ...");
+			fetchAllRooms();
 		}
 
 		public override void ViewWillAppear(bool animated)
 		{
-			fetchAllRooms();
+
 		}
 
 		private void configureUI()
@@ -38,11 +41,16 @@ namespace FirebaseXamarin.iOS
 			NavigationController.Title = "Chats";
 
 			NavigationController.NavigationBar.TintColor = UIColor.Black;
+
+			refreshControl.ValueChanged += (sender, e) =>
+			{
+				fetchAllRooms();
+			};
+			tblViewChatRooms.RefreshControl = refreshControl;
 		}
 
 		private void fetchAllRooms()
 		{
-			showLoading("Fetching chats ...");
 			FirebaseManager.sharedManager.fetchAllMyRooms(DBManager.sharedManager.getLoggedInUserInfo().uid, (rooms) =>
 			{
 				InvokeOnMainThread(() =>
@@ -53,12 +61,15 @@ namespace FirebaseXamarin.iOS
 						chatRoomsDataSource = new MyChatRoomsDatasource(rooms);
 						tblViewChatRooms.Source = chatRoomsDataSource;
 						tblViewChatRooms.Delegate = new MyChatRoomsDelegate(NavigationController, rooms);
-						tblViewChatRooms.ReloadData();
 					}
 					else
 					{
 						ShowAlert("Message", "No chats found", "Ok");
+						chatRoomsDataSource = new MyChatRoomsDatasource(new List<RoomsMetaData>());
+						tblViewChatRooms.Source = chatRoomsDataSource;
 					}
+					tblViewChatRooms.ReloadData();
+					refreshControl.EndRefreshing();
 				});
 			});
 		}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using FirebaseXamarin.Core.Utils;
 namespace FirebaseXamarin.Core.Network
 {
 	public class ChatAPI
@@ -11,17 +12,18 @@ namespace FirebaseXamarin.Core.Network
 
 		public ChatAPI()
 		{
+
 		}
 
 		public static async void subscribeOtherUsersToTopic(RoomsMetaData roomMetaData)
 		{
 			SubscribeTopic subscribeTopic = new SubscribeTopic();
 			subscribeTopic.to = "/topics/" + roomMetaData.roomId;
-			subscribeTopic.registration_tokens = roomMetaData.users;
+			subscribeTopic.registration_tokens = roomMetaData.arrFireBaseTokens;
 			APIResult result = await NetworkRequestManager.Sharedmanager.sendPostRequest(JsonConvert.SerializeObject(subscribeTopic), URL_BATCH_ADD_TO_TOPIC);
 		}
 
-		public static async void sendMessage(Message message)
+		public static async void sendMessage(RoomsMetaData roomMeataData, Message message)
 		{
 			MessageFormat format = new MessageFormat();
 			format.to = "/topics/" + message.roomId;
@@ -29,10 +31,18 @@ namespace FirebaseXamarin.Core.Network
 
 			Notification notification = new Notification();
 			notification.body = message.message;
-			notification.title = message.message;
 			notification.text = message.message;
 			notification.uid = message.sender_id;
-			notification.timeStamp = message.timestamp;
+			notification.timestamp = message.timestamp;
+			notification.room_id = message.roomId;
+			if (roomMeataData.type == Constants.ROOM_TYPE_GROUP)
+			{
+				notification.title = DBManager.sharedManager.getLoggedInUserInfo().name + "@" + roomMeataData.displayName;
+			}
+			else
+			{
+				notification.title = DBManager.sharedManager.getLoggedInUserInfo().name;
+			}
 
 			format.notification = notification;
 
@@ -59,7 +69,8 @@ namespace FirebaseXamarin.Core.Network
 		public string text { get; set; }
 		public string uid { get; set; }
 		public string body { get; set; }
-		public string timeStamp { get; set; }
+		public string timestamp { get; set; }
+		public string room_id { get; set; }
 	}
 
 }

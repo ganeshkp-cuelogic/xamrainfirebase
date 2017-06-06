@@ -6,68 +6,59 @@ using SDWebImage;
 
 namespace FirebaseXamarin.iOS
 {
-    public class UsersListDatasource : UITableViewDataSource
-    {
+	public class UsersListDatasource : UITableViewDataSource
+	{
 
-        List<User> users;
-        bool showCheckBoxes;
+		List<User> users;
+		bool showCheckBoxes;
 
-        public UsersListDatasource()
-        {
+		public UsersListDatasource()
+		{
 
-        }
+		}
 
-        public UsersListDatasource(List<User> users)
-        {
-            this.users = users;
-        }
+		public UsersListDatasource(List<User> users)
+		{
+			this.users = users;
+		}
 
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        {
-            UITableViewCell cell = tableView.DequeueReusableCell("cell", indexPath);
+		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+		{
+			UITableViewCell cell = tableView.DequeueReusableCell("cell", indexPath);
 
-            User user = users[indexPath.Row];
+			User user = users[indexPath.Row];
 
-            UILabel labelName = (UILabel)cell.ContentView.ViewWithTag(100);
-            labelName.Text = user.name;
+			UILabel labelName = (UILabel)cell.ContentView.ViewWithTag(100);
+			labelName.Text = user.name;
 
-            UILabel labelEmailId = (UILabel)cell.ContentView.ViewWithTag(300);
-            labelEmailId.Text = user.emailid;
+			UILabel labelEmailId = (UILabel)cell.ContentView.ViewWithTag(300);
+			labelEmailId.Text = user.emailid;
 
-            UIImageView imageViewUsers = (UIImageView)cell.ContentView.ViewWithTag(200);
-            imageViewUsers.Layer.CornerRadius = imageViewUsers.Frame.Size.Width / 2;
-            imageViewUsers.ClipsToBounds = true;
-            // Use the SetImage extension method to load the web image:
-            imageViewUsers.SetImage(
-                url: new NSUrl(user.profilePic),
-                placeholder: UIImage.FromBundle("user.png")
-            );
+			UIImageView imageViewUsers = (UIImageView)cell.ContentView.ViewWithTag(200);
+			imageViewUsers.Layer.CornerRadius = imageViewUsers.Frame.Size.Width / 2;
+			imageViewUsers.ClipsToBounds = true;
+			// Use the SetImage extension method to load the web image:
+			imageViewUsers.SetImage(
+				url: new NSUrl(user.profilePic),
+				placeholder: UIImage.FromBundle("user.png")
+			);
 
-            if (user.isSelected)
-            {
-                cell.Accessory = UITableViewCellAccessory.Checkmark;
-            }
-            else
-            {
-                cell.Accessory = UITableViewCellAccessory.None;
-            }
+			return cell;
+		}
 
-            return cell;
-        }
+		public override nint RowsInSection(UITableView tableView, nint section)
+		{
+			return users.Count;
+		}
 
-        public override nint RowsInSection(UITableView tableView, nint section)
-        {
-            return users.Count;
-        }
+		public void onClickOfNewGroup()
+		{
+			showCheckBoxes = true;
+		}
 
-        public void onClickOfNewGroup()
-        {
-            showCheckBoxes = true;
-        }
-
-        public void onClickOfCancelNewGroup()
-        {
-            showCheckBoxes = false;
-        }
-    }
+		public void onClickOfCancelNewGroup()
+		{
+			showCheckBoxes = false;
+		}
+	}
 }

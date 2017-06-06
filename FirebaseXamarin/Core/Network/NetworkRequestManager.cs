@@ -34,6 +34,8 @@ namespace FirebaseXamarin.Core.Network
 			var uri = new Uri(url);
 			var content = new StringContent(inputJson, Encoding.UTF8, "application/json");
 
+			Console.WriteLine("Url - " + url + " - \n" + inputJson);
+
 			HttpResponseMessage response = null;
 			response = await client.PostAsync(uri, content);
 			var contentBody = await response.Content.ReadAsStringAsync();

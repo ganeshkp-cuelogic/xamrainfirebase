@@ -14,7 +14,6 @@ namespace FirebaseXamarin
 		public string timestamp { get; set; }
 		public string roomId { get; set; }
 
-
 		public NSDictionary toDictionary()
 		{
 			object[] keys = { FirebaseConstants.FB_MESSAGE, FirebaseConstants.FB_SENDER_UID, FirebaseConstants.FB_TIMESTAMP, FirebaseConstants.FB_ROOM_ID };

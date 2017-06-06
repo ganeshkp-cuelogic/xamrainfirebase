@@ -19,12 +19,19 @@ namespace FirebaseXamarin.iOS
 
 		List<User> arrUsersForNewGroup;
 		List<User> arrUsers;
+		UIRefreshControl refreshControl = new UIRefreshControl();
 
 		void SetisGroupClicked(bool status)
 		{
 			if (this.isGroupClicked == status)
 			{
-				List<User> selectedUsers = arrUsersForNewGroup.Where(item => item.isSelected == true).ToList();
+				var selectedRows = tblViewUsers.IndexPathsForSelectedRows;
+				List<User> selectedUsers = new List<User>();
+				foreach (NSIndexPath indexPath in selectedRows)
+				{
+					selectedUsers.Add(arrUsers[indexPath.Row]);
+				}
+
 				if (selectedUsers.Count <= 0)
 				{
 					ShowAlert("Message", "Please select more than one users", "Ok");
@@ -41,6 +48,7 @@ namespace FirebaseXamarin.iOS
 			this.isGroupClicked = status;
 			if (status)
 			{
+				tblViewUsers.SetEditing(true, true);
 				addCloseButton();
 				btnNewGroup.Image = UIImage.FromBundle("checked");
 				UsersListDatasource dataSourcenewGroup = new UsersListDatasource(arrUsersForNewGroup);
@@ -48,9 +56,7 @@ namespace FirebaseXamarin.iOS
 				userListDelegate = new UserListDelegate(this, arrUsersForNewGroup);
 				userListDelegate.didSelectRowCallBack = (NSIndexPath indexPath) =>
 									   {
-										   User selectedUser = arrUsersForNewGroup[indexPath.Row];
-										   selectedUser.isSelected = !selectedUser.isSelected;
-										   tblViewUsers.ReloadData();
+
 									   };
 				userListDelegate.isForGroupSelectiion = true;
 				tblViewUsers.Delegate = userListDelegate;
@@ -58,6 +64,7 @@ namespace FirebaseXamarin.iOS
 			}
 			else
 			{
+				tblViewUsers.SetEditing(false, true);
 				reset();
 			}
 		}
@@ -91,9 +98,13 @@ namespace FirebaseXamarin.iOS
 					roomMetaData.createdTime = Utils.getCurrentTime(); ;
 					roomMetaData.lastUpdatedTime = Utils.getCurrentTime();
 					roomMetaData.displayName = groupName;
+
 					List<User> arrSelectedUsers = arrUsersForNewGroup.Where(item => item.isSelected == true).ToList();
 					roomMetaData.users = new List<string>(arrSelectedUsers.Select(item => item.uid));
 					roomMetaData.users.Add(DBManager.sharedManager.getLoggedInUserInfo().uid);
+
+					roomMetaData.arrFireBaseTokens = new List<string>(arrSelectedUsers.Select(item => item.firebaseToken));
+
 					showLoading("Creating Room ...");
 					FirebaseManager.sharedManager.createGroup(roomMetaData, (string roomId) =>
 					{
@@ -126,15 +137,18 @@ namespace FirebaseXamarin.iOS
 
 		}
 
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 			configureUI();
+			showLoading("fetching users ...");
+			fetchUsersAndDisplay();
 		}
 
 		public override void ViewWillAppear(bool animated)
 		{
-			fetchUsersAndDisplay();
+
 		}
 
 		private void configureUI()
@@ -145,6 +159,14 @@ namespace FirebaseXamarin.iOS
 				SetisGroupClicked(true);
 			};
 			tblViewUsers.TableFooterView = new UIView();
+
+			refreshControl.ValueChanged += (sender, e) =>
+			{
+				fetchUsersAndDisplay();
+			};
+
+			tblViewUsers.RefreshControl = refreshControl;
+			tblViewUsers.AllowsMultipleSelectionDuringEditing = true;
 		}
 
 		private void addCloseButton()
@@ -164,7 +186,6 @@ namespace FirebaseXamarin.iOS
 
 		private void fetchUsersAndDisplay()
 		{
-			showLoading("fetching users ...");
 			FirebaseManager.sharedManager.getAllUser((List<User> users) =>
 			{
 				hideLoading();
@@ -180,6 +201,7 @@ namespace FirebaseXamarin.iOS
 					{
 						ShowAlert("Message", "No users found", "Ok");
 					}
+					refreshControl.EndRefreshing();
 				});
 			});
 		}

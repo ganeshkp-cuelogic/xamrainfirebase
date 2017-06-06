@@ -131,6 +131,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="HockeySDK.CrashOnly.iOSBindings">
+      <HintPath>..\Components\hockeyappios-crashonly-4.1.4.0\lib\ios-unified\HockeySDK.CrashOnly.iOSBindings.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -272,6 +275,10 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="sdwebimage">
       <Version>3.7.5</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="hockeyappios-crashonly">
+      <Version>4.1.4.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

@@ -35,7 +35,7 @@ namespace FirebaseXamarin.iOS.Cells
 
 		public void populateData(RoomsMetaData roomMetaData)
 		{
-			lblDateTime.Text = Utils.getFormmatedTime(roomMetaData.createdTime).ToString(Constants.DISPLAY_DATE_FORMAT);
+			lblDateTime.Text = Utils.getFormmatedTime(roomMetaData.createdTime).ToString(Constants.ROOM_DISPLAY_DATE_FORMAT);
 			if (!String.IsNullOrEmpty(roomMetaData.displayName))
 			{
 				lblChatRoomName.Text = roomMetaData.displayName;
