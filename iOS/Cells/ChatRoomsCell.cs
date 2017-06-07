@@ -29,7 +29,7 @@ namespace FirebaseXamarin.iOS.Cells
 
 			imgViewProfile.Layer.CornerRadius = imgViewProfile.Frame.Size.Width / 2;
 			imgViewProfile.ClipsToBounds = true;
-			imgViewProfile.Layer.BorderWidth = 1;
+			imgViewProfile.Layer.BorderWidth = 0;
 			imgViewProfile.ContentMode = UIViewContentMode.ScaleAspectFit;
 		}
 
@@ -39,7 +39,7 @@ namespace FirebaseXamarin.iOS.Cells
 			if (!String.IsNullOrEmpty(roomMetaData.displayName))
 			{
 				lblChatRoomName.Text = roomMetaData.displayName;
-				imgViewProfile.Image = UIImage.FromBundle("users");
+				imgViewProfile.Image = UIImage.FromBundle("group");
 			}
 			else
 			{

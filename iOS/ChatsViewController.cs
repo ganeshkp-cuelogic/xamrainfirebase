@@ -56,9 +56,9 @@ namespace FirebaseXamarin.iOS
 				});
 			}
 
-			bottomConstraint.Constant = 0;
-			heightConstraintSendView.Constant = 47;
-			View.LayoutIfNeeded();
+			//bottomConstraint.Constant = 0;
+			//heightConstraintSendView.Constant = 47;
+			//View.LayoutIfNeeded();
 			SetupKeyboardObserver();
 
 			tblViewChats.RegisterNibForCellReuse(UINib.FromName("LeftChatMessageCell", NSBundle.MainBundle), LeftChatMessageCell.Key);
@@ -150,7 +150,7 @@ namespace FirebaseXamarin.iOS
 					}
 					else
 					{
-						ShowAlert("Message", "No messages found", "Ok");
+						//ShowAlert("Message", "No messages found", "Ok");
 					}
 				});
 			});

@@ -21,23 +21,24 @@ namespace FirebaseXamarin.iOS
 		List<User> arrUsers;
 		UIRefreshControl refreshControl = new UIRefreshControl();
 
+		#region Setter
 		void SetisGroupClicked(bool status)
 		{
 			if (this.isGroupClicked == status)
 			{
 				var selectedRows = tblViewUsers.IndexPathsForSelectedRows;
 				List<User> selectedUsers = new List<User>();
-				foreach (NSIndexPath indexPath in selectedRows)
-				{
-					selectedUsers.Add(arrUsers[indexPath.Row]);
-				}
 
-				if (selectedUsers.Count <= 0)
+				if (selectedRows == null || selectedRows.Count() <= 0)
 				{
 					ShowAlert("Message", "Please select more than one users", "Ok");
 				}
 				else
 				{
+					foreach (NSIndexPath indexPath in selectedRows)
+					{
+						selectedUsers.Add(arrUsers[indexPath.Row]);
+					}
 					proceedToCreateGroup();
 					reset();
 					this.isGroupClicked = false;
@@ -50,7 +51,9 @@ namespace FirebaseXamarin.iOS
 			{
 				tblViewUsers.SetEditing(true, true);
 				addCloseButton();
-				btnNewGroup.Image = UIImage.FromBundle("checked");
+
+				btnNewGroup.Title = "Done";
+
 				UsersListDatasource dataSourcenewGroup = new UsersListDatasource(arrUsersForNewGroup);
 				tblViewUsers.DataSource = dataSourcenewGroup;
 				userListDelegate = new UserListDelegate(this, arrUsersForNewGroup);
@@ -68,15 +71,102 @@ namespace FirebaseXamarin.iOS
 				reset();
 			}
 		}
+		#endregion
 
-		void reset()
+		public UsersViewController(IntPtr handle) : base(handle)
 		{
-			btnNewGroup.Image = UIImage.FromBundle("newgroup");
-			removeCloseButton();
-			displayUsers(arrUsers);
+
 		}
 
-		void proceedToCreateGroup()
+		#region View Life Cycle
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+			configureUI();
+			showLoading("fetching users ...");
+			fetchUsersAndDisplay();
+		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+
+		}
+		#endregion
+
+		#region Private Methods
+		private void configureUI()
+		{
+			NavigationController.NavigationBarHidden = false;
+			NavigationController.NavigationBar.TintColor = UIColor.Black;
+			btnNewGroup.Clicked += (sender, e) =>
+			{
+				SetisGroupClicked(true);
+			};
+			tblViewUsers.TableFooterView = new UIView();
+
+			refreshControl.ValueChanged += (sender, e) =>
+			{
+				fetchUsersAndDisplay();
+			};
+
+			tblViewUsers.RefreshControl = refreshControl;
+			tblViewUsers.AllowsMultipleSelectionDuringEditing = true;
+
+			customiseNewGroupButton();
+		}
+
+		private void customiseNewGroupButton()
+		{
+			btnNewGroup.Title = "New Group";
+			btnNewGroup.Style = UIBarButtonItemStyle.Plain;
+		}
+
+		private void addCloseButton()
+		{
+			UIBarButtonItem leftCancelButton = new UIBarButtonItem(UIBarButtonSystemItem.Cancel);
+			leftCancelButton.Clicked += (sender, e) =>
+			{
+				SetisGroupClicked(false);
+			};
+			NavigationItem.SetLeftBarButtonItem(leftCancelButton, true);
+		}
+
+		private void removeCloseButton()
+		{
+			NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(), true);
+		}
+
+		private void fetchUsersAndDisplay()
+		{
+			FirebaseManager.sharedManager.getAllUser((List<User> users) =>
+			{
+				hideLoading();
+				InvokeOnMainThread(() =>
+				{
+					arrUsersForNewGroup = users.Select(item => (User)item.Clone()).ToList();
+					arrUsers = users;
+					if (users != null && users.Count > 0)
+					{
+						displayUsers(arrUsers);
+					}
+					else
+					{
+						ShowAlert("Message", "No users found", "Ok");
+					}
+					refreshControl.EndRefreshing();
+				});
+			});
+		}
+
+		private void reset()
+		{
+			customiseNewGroupButton();
+			removeCloseButton();
+			displayUsers(arrUsers);
+			tblViewUsers.SetEditing(false, true);
+		}
+
+		private void proceedToCreateGroup()
 		{
 			UIAlertView alert = new UIAlertView();
 			alert.Title = "Please enter group name";
@@ -116,7 +206,7 @@ namespace FirebaseXamarin.iOS
 				}
 				else
 				{
-
+					reset();
 				}
 
 			};
@@ -132,79 +222,7 @@ namespace FirebaseXamarin.iOS
 			tblViewUsers.ReloadData();
 		}
 
-		public UsersViewController(IntPtr handle) : base(handle)
-		{
-
-		}
-
-
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
-			configureUI();
-			showLoading("fetching users ...");
-			fetchUsersAndDisplay();
-		}
-
-		public override void ViewWillAppear(bool animated)
-		{
-
-		}
-
-		private void configureUI()
-		{
-			NavigationController.NavigationBarHidden = false;
-			btnNewGroup.Clicked += (sender, e) =>
-			{
-				SetisGroupClicked(true);
-			};
-			tblViewUsers.TableFooterView = new UIView();
-
-			refreshControl.ValueChanged += (sender, e) =>
-			{
-				fetchUsersAndDisplay();
-			};
-
-			tblViewUsers.RefreshControl = refreshControl;
-			tblViewUsers.AllowsMultipleSelectionDuringEditing = true;
-		}
-
-		private void addCloseButton()
-		{
-			UIBarButtonItem leftCancelButton = new UIBarButtonItem(UIBarButtonSystemItem.Cancel);
-			leftCancelButton.Clicked += (sender, e) =>
-			{
-				SetisGroupClicked(false);
-			};
-			NavigationItem.SetLeftBarButtonItem(leftCancelButton, true);
-		}
-
-		private void removeCloseButton()
-		{
-			NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(), true);
-		}
-
-		private void fetchUsersAndDisplay()
-		{
-			FirebaseManager.sharedManager.getAllUser((List<User> users) =>
-			{
-				hideLoading();
-				InvokeOnMainThread(() =>
-				{
-					arrUsersForNewGroup = users.Select(item => (User)item.Clone()).ToList();
-					arrUsers = users;
-					if (users != null && users.Count > 0)
-					{
-						displayUsers(arrUsers);
-					}
-					else
-					{
-						ShowAlert("Message", "No users found", "Ok");
-					}
-					refreshControl.EndRefreshing();
-				});
-			});
-		}
+		#endregion
 
 		#region UserListActionProtocol Methods
 

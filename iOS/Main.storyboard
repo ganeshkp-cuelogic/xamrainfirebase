@@ -103,7 +103,7 @@
                         <viewControllerLayoutGuide type="bottom" id="nlg-f8-g0v"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uv2-Q5-eDg">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="74" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tjh-n2-vhe">
@@ -138,7 +138,7 @@
                         <viewControllerLayoutGuide type="bottom" id="38"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="41">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="69" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ugd-BC-tUw">
@@ -205,7 +205,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Users" id="bVS-AK-gMA">
-                        <barButtonItem key="rightBarButtonItem" image="newgroup" id="MKI-yH-dFK"/>
+                        <barButtonItem key="rightBarButtonItem" title="New Group" style="done" id="MKI-yH-dFK"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
@@ -222,7 +222,7 @@
             <objects>
                 <tableViewController title="Settings" id="qyL-ah-iJc" customClass="SettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="40" sectionFooterHeight="40" id="quI-xC-T6U">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -460,7 +460,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="ChatTabBarController" id="TyP-tH-cqd" customClass="ChatTabBarController" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Aim-1O-SyI">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="Aim-1O-SyI">
                         <rect key="frame" x="0.0" y="551" width="600" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -478,7 +478,7 @@
         <!--Chats View Controller-->
         <scene sceneID="50">
             <objects>
-                <viewController storyboardIdentifier="ChatsViewController" id="51" customClass="ChatsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatsViewController" automaticallyAdjustsScrollViewInsets="NO" id="51" customClass="ChatsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="48"/>
                         <viewControllerLayoutGuide type="bottom" id="49"/>
@@ -488,8 +488,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RD4-PX-IYD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="555"/>
-                                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="558"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRH-1a-HXN">
                                 <rect key="frame" x="0.0" y="556" width="375" height="47"/>
@@ -549,11 +549,11 @@
                         <constraints>
                             <constraint firstItem="RD4-PX-IYD" firstAttribute="leading" secondItem="52" secondAttribute="leading" id="Df0-zl-Fqp"/>
                             <constraint firstItem="bRH-1a-HXN" firstAttribute="leading" secondItem="52" secondAttribute="leading" id="E9w-nx-3te"/>
+                            <constraint firstItem="49" firstAttribute="top" secondItem="RD4-PX-IYD" secondAttribute="bottom" constant="45" id="FIf-7e-x6s"/>
                             <constraint firstItem="RD4-PX-IYD" firstAttribute="top" secondItem="48" secondAttribute="bottom" id="O0f-4H-y0g"/>
                             <constraint firstAttribute="trailing" secondItem="bRH-1a-HXN" secondAttribute="trailing" id="OxE-ME-uf2"/>
                             <constraint firstAttribute="trailing" secondItem="RD4-PX-IYD" secondAttribute="trailing" id="ZAG-8G-kSL"/>
                             <constraint firstItem="49" firstAttribute="top" secondItem="bRH-1a-HXN" secondAttribute="bottom" id="gdI-4K-6RG"/>
-                            <constraint firstItem="bRH-1a-HXN" firstAttribute="top" secondItem="RD4-PX-IYD" secondAttribute="bottom" constant="1" id="rfD-AB-qa3"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -567,7 +567,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3516" y="374.66269999999997"/>
+            <point key="canvasLocation" x="3516" y="374.66266866566718"/>
         </scene>
         <!--Chats-->
         <scene sceneID="uCP-Gk-g33">
@@ -639,7 +639,6 @@
     <resources>
         <image name="chat" width="16" height="16"/>
         <image name="icon" width="192" height="192"/>
-        <image name="newgroup" width="36" height="36"/>
         <image name="send-button" width="20" height="20"/>
         <image name="settings" width="16" height="16"/>
         <image name="splash" width="268" height="469"/>

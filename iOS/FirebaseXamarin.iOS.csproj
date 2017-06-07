@@ -163,6 +163,8 @@
     <ImageAsset Include="Resources\Assets.xcassets\checked.imageset\checked%402x.png" />
     <ImageAsset Include="Resources\Assets.xcassets\user.imageset\Contents.json" />
     <ImageAsset Include="Resources\Assets.xcassets\user.imageset\user.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\group.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\group.imageset\group%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

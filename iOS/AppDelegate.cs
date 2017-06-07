@@ -7,6 +7,7 @@ using Firebase.CloudMessaging;
 using Firebase.InstanceID;
 using Firebase.Database;
 using UserNotifications;
+using HockeyApp.iOS;
 
 namespace FirebaseXamarin.iOS
 {
@@ -52,6 +53,11 @@ namespace FirebaseXamarin.iOS
 
 			//Configuring the APNS for Notifications
 			configureAPNS();
+
+			// in your FinishedLaunching-method add:
+			var manager = BITHockeyManager.SharedHockeyManager;
+			manager.Configure("$f5c52e81882a4c84b45e2125846ee6e8");
+			manager.StartManager();
 
 			return true;
 		}

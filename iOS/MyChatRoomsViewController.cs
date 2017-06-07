@@ -5,6 +5,7 @@ using FirebaseXamarin.iOS.Datasources;
 using FirebaseXamarin.iOS.Cells;
 using Google.SignIn;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FirebaseXamarin.iOS
 {
@@ -28,6 +29,11 @@ namespace FirebaseXamarin.iOS
 		}
 
 		public override void ViewWillAppear(bool animated)
+		{
+
+		}
+
+		public override void ViewWillDisappear(bool animated)
 		{
 
 		}
@@ -56,6 +62,7 @@ namespace FirebaseXamarin.iOS
 				InvokeOnMainThread(() =>
 				{
 					hideLoading();
+					rooms = rooms.OrderByDescending(x => x.lastUpdatedTime).ToList();
 					if (rooms != null && rooms.Count > 0)
 					{
 						chatRoomsDataSource = new MyChatRoomsDatasource(rooms);
